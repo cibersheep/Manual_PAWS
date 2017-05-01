@@ -186,7 +186,7 @@ Vuelve a las conexiones y corrige lo necesario.
 
 Ahora hay que probar moverse entre las localidades viendo todos los movimientos posibles \(toma nota de cualquier movimiento erróneo para poderlo corregir cuando vuelvas al Editor\).
 
-También es tiempo de hablar de algunas órdenes que PAW ya tiene dentro y que conoce. Por ejemplo, tecleando M o MIRAR se repite otra vez la descripción de la localidad, lo que es muy útil para el jugador si hay un montón de texto en una descripción que ya ha hecho SCROLL.
+También es tiempo de hablar de algTecleando I o INVENTARIO harás una lista de los objetos que lleves en este momento, por ahora llevarás solamente un objeto desde el comienzo, pero no podrásunas órdenes que PAW ya tiene dentro y que conoce. Por ejemplo, tecleando M o MIRAR se repite otra vez la descripción de la Tecleando I o INVENTARIO harás una lista de los objetos que lleves en este momento, por ahora llevarás solamente un objeto desde el comienzo, pero no podráslocalidad, lo que es muy útil para el jugador si hay un montón de texto en una descripción que ya ha hecho SCROLL.
 
 Tecleando I o INVENTARIO harás una lista de los objetos que lleves en este momento, por ahora llevarás solamente un objeto desde el comienzo, pero no podrás hacer nada con él.
 
@@ -383,11 +383,11 @@ La tabla de asociación de palabras y objetos permite poner un nombre y un adjet
 ```
 Objeto     0     ANTORCHA ENCENDIDA
 
-Objeto     1     BOLSA \_
+Objeto     1     BOLSA _
 
-Objeto     2     EMPAREDADO \_
+Objeto     2     EMPAREDADO _
 
-Objeto     3     MANZANA \_
+Objeto     3     MANZANA _
 
 Objeto     4     BILLETE DE AUTOBÚS \_
 
