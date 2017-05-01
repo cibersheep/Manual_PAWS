@@ -112,19 +112,11 @@ TEXTO LOCALIDAD 3: \[La hierba sobre la cual camino está muy bien cuidada. Haci
 
 TEXTO 4: \[Estoy en un camino de grava que va de Este a Oeste, muy cercano a un cómodo banco. Hacia el Sur hay un I cuidado césped y hacia el Norte hay un pabellón de música\].
 
-
-
 TEXTO 5: \[Estoy en el pabellón de música. Al Sur hay un camino de grava\].
-
-
 
 TEXTO 6: \[El sol crea bellos efectos de luz en la superficie del estanque, mecida por una suave brisa. Hay un camino al Norte que termina en un lloroso sauce. Al Este queda un cuidado césped\].
 
-
-
 TEXTO 7: \[Estoy al lado de un sauce llorón. Al Sur queda el estanque\].
-
-
 
 TEXTO 8: \[Estoy sentado en una rama del sauce, con una visión panorámica del parque; lejos, al Este, más allá de la verja del parque, puedo ver la parada del autobús\].
 
@@ -156,29 +148,13 @@ Esto es porque PAW sabe que 0 es un sinónimo de OESTE \(un sinónimo es una pal
 
 Para la localidad 3, necesitamos 3 conexiones: NORTE \(a 4\), OESTE \(a 6\), NOROESTE \(a 7\). Las conexiones que quedan sai las siguientes:
 
-Localidad 4 \(N 5\), \(E 2\), \(S 3\) \(SO 6\) \(0 7\)
+Localidad 4 \(N 5\), \(E 2\), \(S 3\), \(SO 6\), \(0 7\)
 
-
-
-
-
-Localidad 5 \(S 4\) , \(SO 7\)
-
-
-
-
+Localidad 5 \(S 4\), \(SO 7\)
 
 Localidad 6 \(N 7\), \(NE 4\), \(E 3\)
 
-
-
-
-
 Localidad 7 \(ARRIBA 8\), \(NE 5\), \(E 4\), \(SE 3\), \(S 6\)
-
-
-
-
 
 Localidad 8 \(BAJAR 7\)
 
