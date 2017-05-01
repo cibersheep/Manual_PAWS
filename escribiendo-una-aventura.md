@@ -148,15 +148,15 @@ Esto es porque PAW sabe que 0 es un sinónimo de OESTE \(un sinónimo es una pal
 
 Para la localidad 3, necesitamos 3 conexiones: NORTE \(a 4\), OESTE \(a 6\), NOROESTE \(a 7\). Las conexiones que quedan sai las siguientes:
 
-Localidad 4 \(N 5\), \(E 2\), \(S 3\), \(SO 6\), \(0 7\)
+   Localidad 4 \(N 5\), \(E 2\), \(S 3\), \(SO 6\), \(0 7\)
 
-Localidad 5 \(S 4\), \(SO 7\)
+   Localidad 5 \(S 4\), \(SO 7\)
 
-Localidad 6 \(N 7\), \(NE 4\), \(E 3\)
+   Localidad 6 \(N 7\), \(NE 4\), \(E 3\)
 
-Localidad 7 \(ARRIBA 8\), \(NE 5\), \(E 4\), \(SE 3\), \(S 6\)
+   Localidad 7 \(ARRIBA 8\), \(NE 5\), \(E 4\), \(SE 3\), \(S 6\)
 
-Localidad 8 \(BAJAR 7\)
+   Localidad 8 \(BAJAR 7\)
 
 Ahora corrige las entradas de la localidad 0 para que cualquier movimiento nos lleve a la localidad 2, donde comenzamos el juego \(hay una forma mejor de hacer esto, pero necesitamos para ello usar una tabla que todavía desconocemos, y que ya te mostraremos más adelante\).
 
@@ -186,7 +186,7 @@ Vuelve a las conexiones y corrige lo necesario.
 
 Ahora hay que probar moverse entre las localidades viendo todos los movimientos posibles \(toma nota de cualquier movimiento erróneo para poderlo corregir cuando vuelvas al Editor\).
 
-También es tiempo de hablar de algTecleando I o INVENTARIO harás una lista de los objetos que lleves en este momento, por ahora llevarás solamente un objeto desde el comienzo, pero no podrásunas órdenes que PAW ya tiene dentro y que conoce. Por ejemplo, tecleando M o MIRAR se repite otra vez la descripción de la Tecleando I o INVENTARIO harás una lista de los objetos que lleves en este momento, por ahora llevarás solamente un objeto desde el comienzo, pero no podráslocalidad, lo que es muy útil para el jugador si hay un montón de texto en una descripción que ya ha hecho SCROLL.
+También es tiempo de hablar de algunas órdenes que PAW ya tiene dentro y que conoce. Por ejemplo, tecleando M o MIRAR se repite otra vez la descripción de la Tecleando I o INVENTARIO harás una lista de los objetos que lleves en este momento, por ahora llevarás solamente un objeto desde el comienzo, pero no podráslocalidad, lo que es muy útil para el jugador si hay un montón de texto en una descripción que ya ha hecho SCROLL.
 
 Tecleando I o INVENTARIO harás una lista de los objetos que lleves en este momento, por ahora llevarás solamente un objeto desde el comienzo, pero no podrás hacer nada con él.
 
@@ -287,7 +287,7 @@ Usemos la opción P para examinar las entradas que hemos hecho, y deben ser:
 ```
 Objeto 0     Pesa 1
 
-Objeto 1     Pesa 3         C ;         C significa que es un contenedor. \(1\)
+Objeto 1     Pesa 3         C ;         C significa que es un contenedor. (1)
 
 Objeto 2     Pesa 1
 
@@ -297,7 +297,7 @@ Objeto 4     Pesa 1
 
 Objeto 5     Pesa 1
 
-Objeto 6     Pesa 1         WR ;      WR significa que se puede poner y quitar. \(2\)
+Objeto 6     Pesa 1         WR ;      WR significa que se puede poner y quitar. (2)
 
 Objeto 7     Pesa 1
 ```
