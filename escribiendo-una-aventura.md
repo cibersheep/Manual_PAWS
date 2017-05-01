@@ -146,17 +146,17 @@ etc.
 
 Esto es porque PAW sabe que 0 es un sinónimo de OESTE \(un sinónimo es una palabra que significa lo mismo\). PAW usará siempre el sinónimo más corto.
 
-Para la localidad 3, necesitamos 3 conexiones: NORTE \(a 4\), OESTE \(a 6\), NOROESTE \(a 7\). Las conexiones que quedan sai las siguientes:
+Para la localidad 3, necesitamos 3 conexiones: NORTE \(a 4\), OESTE \(a 6\), NOROESTE \(a 7\). Las conexiones que quedan son las siguientes:
 
-   Localidad 4 \(N 5\), \(E 2\), \(S 3\), \(SO 6\), \(0 7\)
+`Localidad 4 (N 5), (E 2), (S 3), (SO 6), (0 7)`
 
-   Localidad 5 \(S 4\), \(SO 7\)
+`Localidad 5 (S 4), (SO 7)`
 
-   Localidad 6 \(N 7\), \(NE 4\), \(E 3\)
+`Localidad 6 (N 7), (NE 4), (E 3)`
 
-   Localidad 7 \(ARRIBA 8\), \(NE 5\), \(E 4\), \(SE 3\), \(S 6\)
+`Localidad 7 (ARRIBA 8), (NE 5), (E 4), (SE 3), (S 6)`
 
-   Localidad 8 \(BAJAR 7\)
+`Localidad 8 (BAJAR 7)`
 
 Ahora corrige las entradas de la localidad 0 para que cualquier movimiento nos lleve a la localidad 2, donde comenzamos el juego \(hay una forma mejor de hacer esto, pero necesitamos para ello usar una tabla que todavía desconocemos, y que ya te mostraremos más adelante\).
 
@@ -235,7 +235,7 @@ Esta posición tiene varios valores especiales que son muy importantes \(son loc
 ```
 252     es para objetos no creados, por ejemplo, todavía no existen dentro del juego.
 
-253     tiene todos los objetos llevados encima \(puestos\) por el jugador.
+253     tiene todos los objetos llevados encima (puestos) por el jugador.
 
 254     tiene todos los objetos llevados por el jugador, pero no puestos encima.
 ```
