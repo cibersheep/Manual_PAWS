@@ -255,15 +255,15 @@ Tecleemos ahora las siguientes posiciones iniciales, pero sin poner los comentar
 Luego, cuando hayas terminado, usa la opción P para corregirlos.
 
 ```
-Objeto 1     2;         porque la bolsa se encuentra en la parada del autobús.
+Objeto 1     2;       porque la bolsa se encuentra en la parada del autobús.
 
 Objeto 2     254;     porque el jugador lleva el emparedado.
 
 Objeto 3     254;     y la manzana.
 
-Objeto 4     8;         significa que el billete está arriba del árbol.
+Objeto 4     8;       significa que el billete está arriba del árbol.
 
-Objeto 5     3;         una piedra que está en la hierba.
+Objeto 5     3;       una piedra que está en la hierba.
 
 Objeto 6     253;     porque el jugador lleva puesto encima el anorak.
 
@@ -348,19 +348,21 @@ Hay que notar que esto de "menor de 14 es palabra-movimiento" se aplica tanto a 
 
 Puesto que todos nuestros objetos son manejables, les daremos un valor mayor de 49.
 
-	ANTORcha 		50
+```
+ANTORcha         50
 
-	BOLSA 			51
+BOLSA            51
 
-	EMPARedado 	52
+EMPARedado       52
 
-	MANZAna 		53
+MANZAna          53
 
-	BILLEte 		54
+BILLEte          54
 
-	PIEDRa 		55
+PIEDRa           55
 
-	ANORAk 		56
+ANORAk           56
+```
 
 Usa la opción I para insertar estas 7 palabras como nombres \(tipo 2\). Por ejemplo, teclea \[ I ANT0R 50 2 \], etc.
 
@@ -379,4 +381,122 @@ Ten en cuenta que PAW solo tomará las primeras 5 letras cuando te refieras a un
 Luego volveremos al Vocabulario, pero ahora vamos a decirle a PAW qué palabras definen nuestros objetos. Porque hasta ahora hemos descrito cada objeto, cuánto pesa, y dónde comienza, pero no le hemos dicho a PAW qué palabra identifica cada objeto.
 
 Vuelve al menú principal y así podremos continuar con otra opción.
+
+#### Palabras para los objetos
+
+La opción W es una tabla donde las palabras que están en el vocabulario se asocian con un objeto particular. En esta tabla solamente se puede corregir, imprimir en pantalla, o imprimir en impresora, puesto que PAW ya ha insertado una entrada en blanco para cada objeto cuando se hizo su descripción en la tabla de texto para objetos. Así pues, tecleando P aparecerán 8 entradas en blanco para nuestros objetos.
+
+La tabla de asociación de palabras y objetos permite poner un nombre y un adjetivo asociados al número del objeto. Nuestros objetos requerirán las siguientes entradas:
+
+	Objeto 	0 	ANTORCHA ENCENDIDA
+
+	Objeto 	1 	BOLSA \_
+
+	Objeto 	2 	EMPAREDADO \_
+
+	Objeto 	3 	MANZANA \_
+
+	Objeto 	4 	BILLETE DE AUTOBÚS \_
+
+	Objeto 	5 	PIEDRA \_
+
+	Objeto 	6 	ANORAK \_
+
+	Objeto 	7 	ANTORCHA APAGADA
+
+Este signo especial " \_ " significa que no hay palabras, o sea que entenderá cualquier palabra. Siempre hay que teclear \_ \(este signo\) si no hay un adjetivo que describe al nombre. Suponemos que con tu sagacidad habitual habrás notado que no se puede insertar un objeto, sino solamente corregirlo \(A\).
+
+#### Diagnóstico
+
+Con T del menú principal se selecciona la opción de probar el juego, o sea, hacer un test de la aventura.
+
+Primero te pregunta si quieres o no quieres diagnóstico, si tecleas "si", aparecerá el titulo y la introducción, y en la parte de abajo se pide un INPUT al jugador.
+
+El que hayas contestado que quieres diagnóstico no tiene efecto aparente todavía, pero si tecleas ENTER antes de cualquier otra cosa, el cursor desaparece y aparecerá una línea parecida a:
+
+	Flag 38 = 0 ?
+
+con flag se refiere PAW a una bandera, en este caso la 38, la que lleva el número de localidad presente.
+
+PAW contiene 256 de estas banderas, y en cada una se puede situar un número de 0 a 255. Se usan para indicar el estado en parte del juego.
+
+Por ejemplo, si decides que la bandera 11 se ponga en 1 cuando la puerta del parque esté cerrada, y haga un clear a 0 cuando esté abierta, esto servirá de marcador para que luego puedas dejar pasar o no al jugador cuando teclee ENTER.
+
+Es decir, si la bandera estuviera a 0 podría pasar, y si la bandera estuviera a 1 le darías el informe de que la puerta está cerrada.
+
+PAW tiene para su uso especifico varias banderas \(de la 0 a la 10 y de la 29 a la 59\). Por eso, si el valor que aparece al lado de la bandera 38 es igual a 0, PAW sabe que tu localidad actual es 0 en Para ver cómo funciona esto, teclea ENTER de nuevo \(con ENTER cambiamos el uso entre la opción diagnóstico o continuar con el INPUT si no has tecleado ningún otro comando\) y vámonos hacia el principio del juego usando la palabra NORTE o cualquier otra dirección que hayas puesto. De nuevo, antes de cualquier otra cosa teclea ENTER y verás que la bandera ha cambiado a 2, esto es, por supuesto, porque estás en la localidad 2.
+
+	Flag 38 = 2 ?
+
+Puedes mirar a los valores de cualquier otra bandera tecleando su número antes de apretar el ENTER, por ejemplo: 100 ENTER y entonces puedes ver el valor de esa bandera.
+
+	Flag 100 = 0 ?
+
+Pero hay otra opción mucho más potente que te deja poner el valor que quieres que tenga una bandera. Ello se hace poniendo el signo = frente al número. Por ejemplo, si en este momento tecleas = 10 ENTER verás que la bandera 100 se ha hecho = a 10.
+
+	Flag 100 = 10 ?
+
+La bandera 100 no hace nada en este juego y su valor no es importante, pero si te pones a practicar por tu cuenta ten cuidado de NO cambiar los valores de ninguna otra bandera de momento, porque te puedes tropezar con alguna otra bandera que SI sea importante, y el juego se te haga un enredo. Vuelve a la línea de INPUT pulsando ENTER y veamos que más puede hacer PAW.
+
+Ahora sí que seremos capaces de manipular los objetos en el juego. De momento la bolsa estará en la parada del autobús. Con nosotros llevaremos el emparedado, la manzana, una antorcha apagada, y el anorak puesto.
+
+Usa el diagnóstico para ver el valor de la bandera 1 \(se hace con ENTER 1 ENTER\), y vemos que tiene el valor de 3, que es el número de objetos que se llevan en las manos, pero no puestos encima. Volvamos a la línea de INPUT y tecleemos "coger saco" y PAW imprimirá el mensaje "Ahora cojo el saco".
+
+Es lo que se llama AUTO-REPORTING \(i posición del saco haya cambiado de la localidad 2 que era la parada del autobús a la localidad 254 \(que es una localidad especial para los objetos que puedan ser llevados pero no puestosnforme automático de cualquier acción que hayas hecho\).
+
+Esta última orden ha hecho que la posición del saco haya cambiado de la localidad 2 que era la parada del autobús a la localidad 254 \(que es una localidad especial para los objetos que puedan ser llevados pero no puestos\).
+
+Fíjate que no hay ningún cambio en la tabla donde se localizan los objetos al comienzo, sino que lo que ha cambiado es la copia que se ha hecho de la base de datos cuando se empieza el juego. Si ahora miras el valor de la bandera 1 \(fíjate también cómo cuando se selecciona diagnóstico estará en uso la última bandera que hayas mirado\) verás que su valor ha aumentado a 4.
+
+Ahora prueba "quitar anorak" y recibirás el mensaje "No puedo quitarme el anorak, mis manos están llenas". Esto es porque PAW inicialmente \(si tú no has dicho lo contrario\) sólo permite al jugador llevar 4 objetos al mismo tiempo, y en algunos casos esta limitación puede impedirle al jugador quitarse vestido, etc., \(de hecho, quitarse una prenda es cambiar la posición de ese objeto de la localidad 253, que es llevado encima, a la localidad 254 que es llevado en la mano\).
+
+Si, por ejemplo, dejamos el saco primero y tecleamos "quitar anorak" veremos que sí se puede. Si miras otra vez a la bandera 1 te darás cuenta de que todavía tiene el número 4, esto es porque al quitarte el anorak has aumentado el número de objetos que llevabas en tus manos.
+
+Ahora, como prueba, teclea las siguientes órdenes y fíjate qué hace cada una \(usando las banderas\):
+
+	Coger Bolsa
+
+	Quitar Anorak
+
+	Poner Anorak
+
+	Coger Manzana
+
+	Coger Billete de autobús
+
+Hay que darse cuenta de que todas las respuestas, excepto la de la última orden, mencionan los objetos por su nombre, esto es porque estaban todos a la vista y por lo tanto el jugador sabía que existían \(estaban en su propia localidad\). Pero para un jugador que no conociera el juego, el billete todavía no existiría, y si al teclear "coger billete" ya en la respuesta lo mencionamos por su nombre, le estamos dando una pista muy importante. Y es que el PAW es muy cuco.
+
+Si tratas de poner cualquier cosa dentro del saco descubrirás que PAW lo que hace es dejar caer los objetos al suelo, esto es porque no le hemos dicho a PAW todavía qué cosas pueden ser puestas dentro de la Bolsa. Solamente le hemos dicho de momento que es un contenedor, en el próximo capitulo trataremos de este tema.
+
+Finalmente encentraremos un terrible "error" en nuestro juego: si tecleamos "coger la puerta", se nos dará la respuesta de "No hay ninguna de esas aquí" o "No está eso aquí". No debería decir eso, porque en la descripción hemos dicho que hay una puerta.
+
+Este es un problema muy frecuente, y ocurre porque le hemos dicho a PAW que hay una manzana, un emparedado, etc., pero no le hemos dicho que existe una puerta, y si usas coger o dejar, etc, con cualquier palabra que no esté en el vocabulario entonces PAW asume que es un objeto que "no está aquí". Sin embargo, una vez que esa palabra entre en el vocabulario, PAW sabrá que no es un objeto \(siempre que no haya una entrada para esa palabra en la tabla de relación-objeto-palabras\) y dará la respuesta "no puedo hacer eso" que es la correcta.
+
+Así que volvamos al menú principal tecleando FIN, ENTER, SI, ENTER, NO, ENTER y seleccionaremos de nuevo la opción de Vocabulario V.
+
+Pongamos todos los nombres de las cosas que hayamos usado en la descripción, aunque no sean objetos, tales como:
+
+	Puerta 	57
+
+	Reja 	58
+
+	Hierba 	59
+
+	Camino 	60
+
+	Banco 	61
+
+	Estanque 62	
+
+	Árbol 	63
+
+	Rama 	63
+
+	Hoja 	63
+
+Es importante que árbol, rama y hoja reciban el mismo número, porque no intentamos que sean manipulables, sino que solamente las entienda el PARSER. Si fueran manipulables, tendríamos que darles números diferentes. Esto es una consideración importante de diseño.
+
+Ahora puede ser el momento de hacer otro test del juego para ver que la orden "coger puerta" produzca una respuesta correcta.
+
+De momento hemos creado las localidades, las hemos conectado entre sí, hemos creado y descrito los objetos, les hemos asignado una palabra desde el vocabulario, un punto de comienzo en el juego, un peso relativo, si eran llevables o quitables, y si eran contenedores. El próximo capitulo tratará de cómo se crean algunos problemas y otros personajes para hacer que el juego sea más interesante.
 
