@@ -82,7 +82,9 @@ Necesitamos poner una línea en blanco entre el título y el texto, pero no pode
 
 Para usar un CECP hay que hacer una pequeña trampa con el Editor de la siguiente forma: Primero teclea EXTRA y selecciona el color blanco \(7\), luego teclea DELETE \(borrar\) una sola vez; con ello borrarás el control del papel pero dejara el número 7, por lo tanto, como dijimos antes, el cursor saltará al principio de una nueva línea. Haz esto otra vez para dejar una línea en blanco y teclea el resto de la introducción. Ten en cuenta que PAW hace un formateo automático del texto.
 
-	TEXTO: \[Mientras esperaba el autobús una ráfaga de viento se llevó mi billete. ¿Puede Vd. ayudarme a encontrarlo?\].
+```
+TEXTO: \[Mientras esperaba el autobús una ráfaga de viento se llevó mi billete. ¿Puede Vd. ayudarme a encontrarlo?\].
+```
 
 Cuando hayas terminado teclea ENTER para finalizar la edición y luego cualquier tecla para volver al submenú.
 
@@ -98,7 +100,9 @@ Debido al formateo automático hay que teclear siempre los espacios aunque sea a
 
 **REGLA:** Teclea siempre el espacio entre dos palabras o entre un punto final y el comienzo de la próxima frase, aunque ese espacio esté al comienzo de una nueva línea de pantalla. Luego será suprimido por el formateador si es necesario.
 
-		TEXTO LOCALIDAD 2: \[Estoy en la parada del autobús en una calle de dirección Norte - Sur. Al Oeste queda un parque cuya verja de hierro está abierta\].
+```
+    TEXTO LOCALIDAD 2: \[Estoy en la parada del autobús en una calle de dirección Norte - Sur. Al Oeste queda un parque cuya verja de hierro está abierta\].
+```
 
 Vuelve al submenú con ENTER \(desde ahora omitiremos el uso de la palabra ENTER\) suponiendo que con tu inteligencia habitual has captado la onda.
 
@@ -108,17 +112,19 @@ Por otra parte PAW posicionará siempre el cursor tan cerca al problema como pue
 
 Ahora ENTER proporciona la localidad 3 en blanco.
 
-	TEXTO LOCALIDAD 3: \[La hierba sobre la cual camino está muy bien cuidada. Hacia el Norte hay un cómodo banco y hacia el Este queda un estanque\].
+```
+TEXTO LOCALIDAD 3: \[La hierba sobre la cual camino está muy bien cuidada. Hacia el Norte hay un cómodo banco y hacia el Este queda un estanque\].
 
-	TEXTO 4: \[Estoy en un camino de grava que va de Este a Oeste, muy cercano a un cómodo banco. Hacia el Sur hay un I cuidado césped y hacia el Norte hay un pabellón de música\].
+TEXTO 4: \[Estoy en un camino de grava que va de Este a Oeste, muy cercano a un cómodo banco. Hacia el Sur hay un I cuidado césped y hacia el Norte hay un pabellón de música\].
 
-	TEXTO 5: \[Estoy en el pabellón de música. Al Sur hay un camino de grava\].
+TEXTO 5: \[Estoy en el pabellón de música. Al Sur hay un camino de grava\].
 
-	TEXTO 6: \[El sol crea bellos efectos de luz en la superficie del estanque, mecida por una suave brisa. Hay un camino al Norte que termina en un lloroso sauce. Al Este queda un cuidado césped\].
+TEXTO 6: \[El sol crea bellos efectos de luz en la superficie del estanque, mecida por una suave brisa. Hay un camino al Norte que termina en un lloroso sauce. Al Este queda un cuidado césped\].
 
-	TEXTO 7: \[Estoy al lado de un sauce llorón. Al Sur queda el estanque\].
+TEXTO 7: \[Estoy al lado de un sauce llorón. Al Sur queda el estanque\].
 
-	TEXTO 8: \[Estoy sentado en una rama del sauce, con una visión panorámica del parque; lejos, al Este, más allá de la verja del parque, puedo ver la parada del autobús\].
+TEXTO 8: \[Estoy sentado en una rama del sauce, con una visión panorámica del parque; lejos, al Este, más allá de la verja del parque, puedo ver la parada del autobús\].
+```
 
 Usa P para chequear lo que has tecleado y cuando la pantalla se llene de texto aparecerá el mensaje "más..." en la parte inferior de la pantalla. Si entonces pulsas cualquier tecla \(excepto BREAK,ESPACIO o N\) aparecerá otra pantalla llena de texto y así hasta llegar al final donde aparece el mensaje "PULSE CUALQUIER TECLA".
 
@@ -138,23 +144,27 @@ Por lo tanto, hay que teclear \(A 2\) para corregir la entrada de la localidad 2
 
 Si usamos ahora la opción \(P\) para examinar la entrada que acabamos de hacer \(date cuenta de que con P 2 se imprimirán solamente las entradas a partir de la localidad 2 hacia arriba\), entonces encontrarás que la entrada esté más o menos:
 
-	Localidad 2 OESTE to 4
+```
+Localidad 2 OESTE to 4
 
-	etc.
+etc.
+```
 
 Esto es porque PAW sabe que 0 es un sinónimo de OESTE \(un sinónimo es una palabra que significa lo mismo\). PAW usará siempre el sinónimo más corto.
 
 Para la localidad 3, necesitamos 3 conexiones: NORTE \(a 4\), OESTE \(a 6\), NOROESTE \(a 7\). Las conexiones que quedan sai las siguientes:
 
-	Localidad 4 \(N 5\), \(E 2\), \(S 3\) \(SO 6\) \(0 7\)
+```
+Localidad 4 \(N 5\), \(E 2\), \(S 3\) \(SO 6\) \(0 7\)
 
-	Localidad 5 \(S 4\) , \(SO 7\)
+Localidad 5 \(S 4\) , \(SO 7\)
 
-	Localidad 6 \(N 7\), \(NE 4\), \(E 3\)
+Localidad 6 \(N 7\), \(NE 4\), \(E 3\)
 
-	Localidad 7 \(ARRIBA 8\), \(NE 5\), \(E 4\), \(SE 3\), \(S 6\)
+Localidad 7 \(ARRIBA 8\), \(NE 5\), \(E 4\), \(SE 3\), \(S 6\)
 
-	Localidad 8 \(BAJAR 7\)
+Localidad 8 \(BAJAR 7\)
+```
 
 Ahora corrige las entradas de la localidad 0 para que cualquier movimiento nos lleve a la localidad 2, donde comenzamos el juego \(hay una forma mejor de hacer esto, pero necesitamos para ello usar una tabla que todavía desconocemos, y que ya te mostraremos más adelante\).
 
@@ -196,21 +206,23 @@ Objeto es cualquier cosa que el jugador puede manipular dentro del juego, por ej
 
 En nuestro juego, que es bastante simple, usaremos los siguientes objetos \(no todos ellos tendrán una función en el juego finalizado\):
 
-	Objeto 0 	una antorcha encendida.
+```
+Objeto 0     una antorcha encendida.
 
-	Objeto 1 	una bolsa.
+Objeto 1     una bolsa.
 
-	Objeto 2 	un emparedado.
+Objeto 2     un emparedado.
 
-	Objeto 3 	una manzana.
+Objeto 3     una manzana.
 
-	Objeto 4 	un billete de autobús.
+Objeto 4     un billete de autobús.
 
-	Objeto 5 	una piedra.
+Objeto 5     una piedra.
 
-	Objeto 6 	un anorak.
+Objeto 6     un anorak.
 
-	Objeto 7 	una antorcha apagada.
+Objeto 7     una antorcha apagada.
+```
 
 Muy Importante: La antorcha se trata como dos objetos separados. Cambiaremos del uno al otro cuando el jugador la apague o la encienda.
 
@@ -228,11 +240,13 @@ Vemos que no hay opción de insertar, puesto que eso ya queda hecho automáticam
 
 Esta posición tiene varios valores especiales que son muy importantes \(son localidades que no existen\):
 
-	252 	es para objetos no creados, por ejemplo, todavía no existen dentro del juego.
+```
+252     es para objetos no creados, por ejemplo, todavía no existen dentro del juego.
 
-	253 	tiene todos los objetos llevados encima \(puestos\) por el jugador.
+253     tiene todos los objetos llevados encima \(puestos\) por el jugador.
 
-	254 	tiene todos los objetos llevados por el jugador, pero no puestos encima.
+254     tiene todos los objetos llevados por el jugador, pero no puestos encima.
+```
 
 Por ejemplo, si queremos hacer de la antorcha encendida un objeto no creado hay que teclear \[A 0 252\] y como antes estaba como objeto llevado, el mensaje AMEND que significa corregido será impreso para mostrar que PAW ha hecho la corrección.
 
@@ -240,19 +254,21 @@ Tecleemos ahora las siguientes posiciones iniciales, pero sin poner los comentar
 
 Luego, cuando hayas terminado, usa la opción P para corregirlos.
 
-	Objeto 1 	2; 		porque la bolsa se encuentra en la parada del autobús.
+```
+Objeto 1     2;         porque la bolsa se encuentra en la parada del autobús.
 
-	Objeto 2 	254; 	porque el jugador lleva el emparedado.
+Objeto 2     254;     porque el jugador lleva el emparedado.
 
-	Objeto 3 	254; 	y la manzana.
+Objeto 3     254;     y la manzana.
 
-	Objeto 4 	8; 		significa que el billete está arriba del árbol.
+Objeto 4     8;         significa que el billete está arriba del árbol.
 
-	Objeto 5 	3; 		una piedra que está en la hierba.
+Objeto 5     3;         una piedra que está en la hierba.
 
-	Objeto 6 	253; 	porque el jugador lleva puesto encima el anorak.
+Objeto 6     253;     porque el jugador lleva puesto encima el anorak.
 
-	Objeto 7 	254; 	y lleva consigo la antorcha apagada.
+Objeto 7     254;     y lleva consigo la antorcha apagada.
+```
 
 Ahora vamos a decirle a PAW más cosas acerca de los objetos; por ejemplo, su peso relativo, o si son capaces de contener a otros objetos, o si el jugador puede llevarlos puestos encima. Volvemos al menú principal y tecleamos la opción X, con ello pasamos al menú de peso de objetos, que también nos permite poner los otros dos atributos \(contenedor y llevable encima\). Como siempre, PAW ya ha creado una entrada en esta tabla para todos los objetos que se han insertado previamente. De hecho ya le ha dado a cada objeto el peso de una unidad, no contenedor, y no llevable. Esto lo asigna a cada objeto por defecto \(por defecto significa el que PAW le da, si tu no le das ningún valor\).
 
@@ -260,13 +276,15 @@ Necesitamos probablemente corregir el anorak y la bolsa, puesto que el jugador e
 
 Cuando se teclea A para corregir aparecen 3 valores; uno es el número del objeto, otro es el peso unitario del objeto, y finalmente el tercero son los otros atributos, que pueden ser:
 
-	0 = 	ninguno.
+```
+0 =     ninguno.
 
-	1 = 	contenedor para otros objetos.
+1 =     contenedor para otros objetos.
 
-	2 = 	el jugador puede ponérselo y quitárselo.
+2 =     el jugador puede ponérselo y quitárselo.
 
-	3 = 	un contenedor que puede ser puesto y quitado \(ejemplo: unos pantalones que tienen un bolsillo\).
+3 =     un contenedor que puede ser puesto y quitado \(ejemplo: unos pantalones que tienen un bolsillo\).
+```
 
 Volvamos a nuestra bolsa, \(objeto 1\) que es un contenedor y pesa 3 unidades. Entonces necesitamos teclear \[A 1 3 1\] \(NO TE OLVIDES DE PONER LOS ESPACIOS\).
 
@@ -274,25 +292,91 @@ El anorak no tiene bolsillos \(por lo menos en este juego no los tiene\), pero p
 
 Usemos la opción P para examinar las entradas que hemos hecho, y deben ser:
 
-	Objeto 0 	Pesa 1
+```
+Objeto 0     Pesa 1
 
-	Objeto 1 	Pesa 3 		C ; 		C significa que es un contenedor. \(1\)
+Objeto 1     Pesa 3         C ;         C significa que es un contenedor. \(1\)
 
-	Objeto 2 	Pesa 1
+Objeto 2     Pesa 1
 
-	Objeto 3 	Pesa 1
+Objeto 3     Pesa 1
 
-	Objeto 4 	Pesa 1
+Objeto 4     Pesa 1
 
-	Objeto 5 	Pesa 1
+Objeto 5     Pesa 1
 
-	Objeto 6 	Pesa 1 		WR ;  	WR significa que se puede poner y quitar. \(2\)
+Objeto 6     Pesa 1         WR ;      WR significa que se puede poner y quitar. \(2\)
 
-	Objeto 7 	Pesa 1
-
-
+Objeto 7     Pesa 1
+```
 
 Ahora podemos probar la aventura otra vez para asegurarnos de que todos los objetos estén donde tienen que estar. Pero todavía no se puede hacer nada con ellos, necesitamos decirle a PAW qué palabra describe cada objeto.
 
 También es el momento de hacer un SAVE de la Base de Datos, pero teniendo el cuidado de que sea en una nueva sección de la cinta y usando un diferente número de versión.
+
+#### Vocabulario
+
+Tiene un menú más complejo que los que hemos visto hasta ahora, pero la mayoría de las entradas son sólo recordatorios de las opciones a tu disposición.
+
+El Vocabulario es una lista de las palabras que PAW puede reconocer si el jugador las teclea durante el juego. Por lo tanto, cualquier palabra que no esté en esta tabla no tendrá ningún efecto. Hemos dejado un vocabulario inicial que ya contiene los verbos, nombres, etc., más usados en las aventuras.
+
+Cada entrada para una palabra consiste en un máximo de cinco letras que, o bien cubren la palabra completa, por ejemplo NORTE, o san las cinco primeras letras de otra palabra más larga, por ejemplo describir, seguido del valor para esa palabra y del tipo de palabra \(por ejemplo: Nombre, Verbo, etc.\).
+
+El usar solamente cinco letras para guardar una palabra reduce la cantidad de memoria requerida para guardar el vocabulario entero; también reduce la longitud de los INPUTS del jugador, y acelera la búsqueda de palabras por el propio PAW. Además, cinco letras son suficientes para establecer una diferencia entre la mayoría de las palabras usadas corrientemente.
+
+El menú permite la INSERCION y el BORRADO \(delete\) de palabras; el LISTADO de entradas hechas para cada tipo de palabras, y la inspección de sinónimos.
+
+Si tecleamos S OESTE veremos que PAW muestra el sinónimo O también. Si tecleamos P 2 tendremos una lista de todos los nombres que hay actualmente en PAW \(los números que corresponden a cada tipo de palabra se muestran al lado derecho del menú\). También encontraras que PAW tiene ya en su Vocabulario todas las direcciones del compás y algunas otras útiles.
+
+Necesitamos ahora aumentar el número de NOMBRES para poder poner las palabras que representan nuestros objetos.
+
+Todos los nombres con un valor menor de 50 son nombres propios, por ejemplo: nombres de personajes o lugares, pero más específicamente, para PAW son nombres que no se pueden cambiar por la terminación verbal lo o la.
+
+Explicándolo mejor: para mayor rapidez PAW detecta cuáles palabras son nombres propios \(menos de 50\) y cuales pertenecen a objetos manejables \(mayores de 50\).
+
+En la frase "coge el martillo, golpea a Manolo en la cabeza y déjalo", si has dado a Manolo un valor menor de 50 y a martillo uno mayor, PAW entiende que el la final del verbo se refiere al martillo. Otro ejemplo: en la frase "dale a Carlos una tortilla y quítasela", entenderá que el la final se refiere a la tortilla.
+
+El lo o la también puede ponerse antes del verbo con iguales resultados.
+
+Otro hecho importante es que las palabras con valor inferior a 20 son nombres, y que si PAW no encuentra un verbo en la frase los convertirá temporalmente en verbos.
+
+Por ejemplo: la palabra NORTE es un nombre y puede ser usado en la frase "ir al norte"; pero también puede ser tecleada sola, en cuyo caso como tiene un valor inferior a 20 se comportará como un verbo \(o sea, que te vas al norte\).
+
+Finalmente, las palabras con un valor menor de 14 se tomarán siempre como palabras-movimiento \(cualquier palabra que sea una dirección\) y sirven para determinar el mensaje que PAW imprimirá si no puede hacer nada con esa frase \(por ejemplo, determinará si te responde con un "no puedo" o "no puedo ir en esa dirección".
+
+Hay que notar que esto de "menor de 14 es palabra-movimiento" se aplica tanto a verbos como a nombres convertibles en verbos.
+
+Puesto que todos nuestros objetos son manejables, les daremos un valor mayor de 49.
+
+	ANTORcha 		50
+
+	BOLSA 			51
+
+	EMPARedado 	52
+
+	MANZAna 		53
+
+	BILLEte 		54
+
+	PIEDRa 		55
+
+	ANORAk 		56
+
+Usa la opción I para insertar estas 7 palabras como nombres \(tipo 2\). Por ejemplo, teclea \[ I ANT0R 50 2 \], etc.
+
+Con P 2 se puede comprobar que estos nombres están ahora en el Vocabulario.
+
+También necesitaremos usar adjetivos para diferenciar entre las dos antorchas. Con P 3 podemos ver los adjetivo que PAW ya conoce.
+
+Si no están ENCENDIDO y APAGADO insértalas procurando darles un número alto, pues son poco usados, y así PAW no tendrá que pasar a través de ellos cada vez que busque una palabra más común, por ejemplo un nombre o un verbo.
+
+Todos los números desde el 2 al 254, están disponibles para cualquier tipo de palabra y no hay limitación en el uso de sinónimos.
+
+Si tratas de insertar una palabra que ya está presente, PAW te lo avisará, lo mismo que si tratas de borrar una que no esté presente.
+
+Ten en cuenta que PAW solo tomará las primeras 5 letras cuando te refieras a una palabra e ignorará el resto.
+
+Luego volveremos al Vocabulario, pero ahora vamos a decirle a PAW qué palabras definen nuestros objetos. Porque hasta ahora hemos descrito cada objeto, cuánto pesa, y dónde comienza, pero no le hemos dicho a PAW qué palabra identifica cada objeto.
+
+Vuelve al menú principal y así podremos continuar con otra opción.
 
