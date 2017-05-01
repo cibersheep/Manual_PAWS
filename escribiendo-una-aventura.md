@@ -56,7 +56,7 @@ Para claridad y ver mejor los posibles movimientos haremos el mapa del [diagrama
 
 ![](/assets/Diagrama03.png)
 
-Pantalla de muestra del menú
+###### Pantalla de muestra del menú
 
 ![](/assets/pantalla-muestra-menu.png)
 
@@ -82,9 +82,7 @@ Necesitamos poner una línea en blanco entre el título y el texto, pero no pode
 
 Para usar un CECP hay que hacer una pequeña trampa con el Editor de la siguiente forma: Primero teclea EXTRA y selecciona el color blanco \(7\), luego teclea DELETE \(borrar\) una sola vez; con ello borrarás el control del papel pero dejara el número 7, por lo tanto, como dijimos antes, el cursor saltará al principio de una nueva línea. Haz esto otra vez para dejar una línea en blanco y teclea el resto de la introducción. Ten en cuenta que PAW hace un formateo automático del texto.
 
-```
 TEXTO: \[Mientras esperaba el autobús una ráfaga de viento se llevó mi billete. ¿Puede Vd. ayudarme a encontrarlo?\].
-```
 
 Cuando hayas terminado teclea ENTER para finalizar la edición y luego cualquier tecla para volver al submenú.
 
@@ -100,9 +98,7 @@ Debido al formateo automático hay que teclear siempre los espacios aunque sea a
 
 **REGLA:** Teclea siempre el espacio entre dos palabras o entre un punto final y el comienzo de la próxima frase, aunque ese espacio esté al comienzo de una nueva línea de pantalla. Luego será suprimido por el formateador si es necesario.
 
-```
-    TEXTO LOCALIDAD 2: \[Estoy en la parada del autobús en una calle de dirección Norte - Sur. Al Oeste queda un parque cuya verja de hierro está abierta\].
-```
+TEXTO LOCALIDAD 2: \[Estoy en la parada del autobús en una calle de dirección Norte - Sur. Al Oeste queda un parque cuya verja de hierro está abierta\].
 
 Vuelve al submenú con ENTER \(desde ahora omitiremos el uso de la palabra ENTER\) suponiendo que con tu inteligencia habitual has captado la onda.
 
@@ -112,19 +108,25 @@ Por otra parte PAW posicionará siempre el cursor tan cerca al problema como pue
 
 Ahora ENTER proporciona la localidad 3 en blanco.
 
-```
 TEXTO LOCALIDAD 3: \[La hierba sobre la cual camino está muy bien cuidada. Hacia el Norte hay un cómodo banco y hacia el Este queda un estanque\].
 
 TEXTO 4: \[Estoy en un camino de grava que va de Este a Oeste, muy cercano a un cómodo banco. Hacia el Sur hay un I cuidado césped y hacia el Norte hay un pabellón de música\].
 
+
+
 TEXTO 5: \[Estoy en el pabellón de música. Al Sur hay un camino de grava\].
+
+
 
 TEXTO 6: \[El sol crea bellos efectos de luz en la superficie del estanque, mecida por una suave brisa. Hay un camino al Norte que termina en un lloroso sauce. Al Este queda un cuidado césped\].
 
+
+
 TEXTO 7: \[Estoy al lado de un sauce llorón. Al Sur queda el estanque\].
 
+
+
 TEXTO 8: \[Estoy sentado en una rama del sauce, con una visión panorámica del parque; lejos, al Este, más allá de la verja del parque, puedo ver la parada del autobús\].
-```
 
 Usa P para chequear lo que has tecleado y cuando la pantalla se llene de texto aparecerá el mensaje "más..." en la parte inferior de la pantalla. Si entonces pulsas cualquier tecla \(excepto BREAK,ESPACIO o N\) aparecerá otra pantalla llena de texto y así hasta llegar al final donde aparece el mensaje "PULSE CUALQUIER TECLA".
 
@@ -154,17 +156,31 @@ Esto es porque PAW sabe que 0 es un sinónimo de OESTE \(un sinónimo es una pal
 
 Para la localidad 3, necesitamos 3 conexiones: NORTE \(a 4\), OESTE \(a 6\), NOROESTE \(a 7\). Las conexiones que quedan sai las siguientes:
 
-```
 Localidad 4 \(N 5\), \(E 2\), \(S 3\) \(SO 6\) \(0 7\)
+
+
+
+
 
 Localidad 5 \(S 4\) , \(SO 7\)
 
+
+
+
+
 Localidad 6 \(N 7\), \(NE 4\), \(E 3\)
+
+
+
+
 
 Localidad 7 \(ARRIBA 8\), \(NE 5\), \(E 4\), \(SE 3\), \(S 6\)
 
+
+
+
+
 Localidad 8 \(BAJAR 7\)
-```
 
 Ahora corrige las entradas de la localidad 0 para que cualquier movimiento nos lleve a la localidad 2, donde comenzamos el juego \(hay una forma mejor de hacer esto, pero necesitamos para ello usar una tabla que todavía desconocemos, y que ya te mostraremos más adelante\).
 
@@ -388,21 +404,23 @@ La opción W es una tabla donde las palabras que están en el vocabulario se aso
 
 La tabla de asociación de palabras y objetos permite poner un nombre y un adjetivo asociados al número del objeto. Nuestros objetos requerirán las siguientes entradas:
 
-	Objeto 	0 	ANTORCHA ENCENDIDA
+```
+Objeto     0     ANTORCHA ENCENDIDA
 
-	Objeto 	1 	BOLSA \_
+Objeto     1     BOLSA \_
 
-	Objeto 	2 	EMPAREDADO \_
+Objeto     2     EMPAREDADO \_
 
-	Objeto 	3 	MANZANA \_
+Objeto     3     MANZANA \_
 
-	Objeto 	4 	BILLETE DE AUTOBÚS \_
+Objeto     4     BILLETE DE AUTOBÚS \_
 
-	Objeto 	5 	PIEDRA \_
+Objeto     5     PIEDRA \_
 
-	Objeto 	6 	ANORAK \_
+Objeto     6     ANORAK \_
 
-	Objeto 	7 	ANTORCHA APAGADA
+Objeto     7     ANTORCHA APAGADA
+```
 
 Este signo especial " \_ " significa que no hay palabras, o sea que entenderá cualquier palabra. Siempre hay que teclear \_ \(este signo\) si no hay un adjetivo que describe al nombre. Suponemos que con tu sagacidad habitual habrás notado que no se puede insertar un objeto, sino solamente corregirlo \(A\).
 
@@ -414,7 +432,9 @@ Primero te pregunta si quieres o no quieres diagnóstico, si tecleas "si", apare
 
 El que hayas contestado que quieres diagnóstico no tiene efecto aparente todavía, pero si tecleas ENTER antes de cualquier otra cosa, el cursor desaparece y aparecerá una línea parecida a:
 
-	Flag 38 = 0 ?
+```
+Flag 38 = 0 ?
+```
 
 con flag se refiere PAW a una bandera, en este caso la 38, la que lleva el número de localidad presente.
 
@@ -426,15 +446,21 @@ Es decir, si la bandera estuviera a 0 podría pasar, y si la bandera estuviera a
 
 PAW tiene para su uso especifico varias banderas \(de la 0 a la 10 y de la 29 a la 59\). Por eso, si el valor que aparece al lado de la bandera 38 es igual a 0, PAW sabe que tu localidad actual es 0 en Para ver cómo funciona esto, teclea ENTER de nuevo \(con ENTER cambiamos el uso entre la opción diagnóstico o continuar con el INPUT si no has tecleado ningún otro comando\) y vámonos hacia el principio del juego usando la palabra NORTE o cualquier otra dirección que hayas puesto. De nuevo, antes de cualquier otra cosa teclea ENTER y verás que la bandera ha cambiado a 2, esto es, por supuesto, porque estás en la localidad 2.
 
-	Flag 38 = 2 ?
+```
+Flag 38 = 2 ?
+```
 
 Puedes mirar a los valores de cualquier otra bandera tecleando su número antes de apretar el ENTER, por ejemplo: 100 ENTER y entonces puedes ver el valor de esa bandera.
 
-	Flag 100 = 0 ?
+```
+Flag 100 = 0 ?
+```
 
 Pero hay otra opción mucho más potente que te deja poner el valor que quieres que tenga una bandera. Ello se hace poniendo el signo = frente al número. Por ejemplo, si en este momento tecleas = 10 ENTER verás que la bandera 100 se ha hecho = a 10.
 
-	Flag 100 = 10 ?
+```
+Flag 100 = 10 ?
+```
 
 La bandera 100 no hace nada en este juego y su valor no es importante, pero si te pones a practicar por tu cuenta ten cuidado de NO cambiar los valores de ninguna otra bandera de momento, porque te puedes tropezar con alguna otra bandera que SI sea importante, y el juego se te haga un enredo. Vuelve a la línea de INPUT pulsando ENTER y veamos que más puede hacer PAW.
 
@@ -454,15 +480,17 @@ Si, por ejemplo, dejamos el saco primero y tecleamos "quitar anorak" veremos que
 
 Ahora, como prueba, teclea las siguientes órdenes y fíjate qué hace cada una \(usando las banderas\):
 
-	Coger Bolsa
+```
+Coger Bolsa
 
-	Quitar Anorak
+Quitar Anorak
 
-	Poner Anorak
+Poner Anorak
 
-	Coger Manzana
+Coger Manzana
 
-	Coger Billete de autobús
+Coger Billete de autobús
+```
 
 Hay que darse cuenta de que todas las respuestas, excepto la de la última orden, mencionan los objetos por su nombre, esto es porque estaban todos a la vista y por lo tanto el jugador sabía que existían \(estaban en su propia localidad\). Pero para un jugador que no conociera el juego, el billete todavía no existiría, y si al teclear "coger billete" ya en la respuesta lo mencionamos por su nombre, le estamos dando una pista muy importante. Y es que el PAW es muy cuco.
 
@@ -476,23 +504,25 @@ Así que volvamos al menú principal tecleando FIN, ENTER, SI, ENTER, NO, ENTER 
 
 Pongamos todos los nombres de las cosas que hayamos usado en la descripción, aunque no sean objetos, tales como:
 
-	Puerta 	57
+```
+Puerta     57
 
-	Reja 	58
+Reja     58
 
-	Hierba 	59
+Hierba     59
 
-	Camino 	60
+Camino     60
 
-	Banco 	61
+Banco     61
 
-	Estanque 62	
+Estanque 62    
 
-	Árbol 	63
+Árbol     63
 
-	Rama 	63
+Rama     63
 
-	Hoja 	63
+Hoja     63
+```
 
 Es importante que árbol, rama y hoja reciban el mismo número, porque no intentamos que sean manipulables, sino que solamente las entienda el PARSER. Si fueran manipulables, tendríamos que darles números diferentes. Esto es una consideración importante de diseño.
 
