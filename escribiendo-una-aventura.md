@@ -275,7 +275,7 @@ Cuando se teclea A para corregir aparecen 3 valores; uno es el número del objet
 
 2 =     el jugador puede ponérselo y quitárselo.
 
-3 =     un contenedor que puede ser puesto y quitado \(ejemplo: unos pantalones que tienen un bolsillo\).
+3 =     un contenedor que puede ser puesto y quitado (ejemplo: unos pantalones que tienen un bolsillo).
 ```
 
 Volvamos a nuestra bolsa, \(objeto 1\) que es un contenedor y pesa 3 unidades. Entonces necesitamos teclear \[A 1 3 1\] \(NO TE OLVIDES DE PONER LOS ESPACIOS\).
@@ -389,11 +389,11 @@ Objeto     2     EMPAREDADO _
 
 Objeto     3     MANZANA _
 
-Objeto     4     BILLETE DE AUTOBÚS \_
+Objeto     4     BILLETE DE AUTOBÚS _
 
-Objeto     5     PIEDRA \_
+Objeto     5     PIEDRA _
 
-Objeto     6     ANORAK \_
+Objeto     6     ANORAK _
 
 Objeto     7     ANTORCHA APAGADA
 ```
@@ -483,21 +483,21 @@ Pongamos todos los nombres de las cosas que hayamos usado en la descripción, au
 ```
 Puerta     57
 
-Reja     58
+Reja       58
 
 Hierba     59
 
 Camino     60
 
-Banco     61
+Banco      61
 
-Estanque 62    
+Estanque   62    
 
-Árbol     63
+Árbol      63
 
-Rama     63
+Rama       63
 
-Hoja     63
+Hoja       63
 ```
 
 Es importante que árbol, rama y hoja reciban el mismo número, porque no intentamos que sean manipulables, sino que solamente las entienda el PARSER. Si fueran manipulables, tendríamos que darles números diferentes. Esto es una consideración importante de diseño.
