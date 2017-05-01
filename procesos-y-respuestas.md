@@ -38,11 +38,11 @@ Hacer I INVEN
 
 Como habrás deducido hábilmente, esta entrada toma en cuenta otra forma de la cual el jugador puede pedir una lista de objetos. Veamos ahora la entrada que pone QUIT \_ \(para hacer esto basta con apretar cualquier tecla excepto BREAK, ESPACIO o N\):
 
-`FIN _ 	QUIT`
+`FIN _     QUIT`
 
-`  	TURNS`
+`TURNS`
 
-` 	END`
+`END`
 
 Bien, FIN es un verbo en el vocabulario, así que como la mínima frase que PAW considerará válida es un verbo, si FIN se teclea solo entonces ya el PARSER generará una SL de "FIN \_". En su búsqueda a través de la tabla de Respuestas, PAW encontrará la entrada que hemos visto más arriba y empezará a ejecutar los condacc.
 
@@ -94,21 +94,21 @@ NO PRESENTES: ¡En cualquier otro sitio! Esto también incluirá la localidad 25
 
 Resumiendo:
 
-`Aquí =			Localidad 255`
+`Aquí =            Localidad 255`
 
-`Llevados =		Localidad 254`
+`Llevados =        Localidad 254`
 
-`Puestos encima =	Localidad 253`
+`Puestos encima =  Localidad 253`
 
-`No presentes =		Localidad 252 = No creado todavía.`
+`No presentes =    Localidad 252 = No creado todavía.`
 
 Vamos a ver otras dos entradas en la tabla de Respuestas:
 
-`COGE TODO 	DOALL 255 (Parámetros: Localidad donde estás: Aquí)`
+`COGE TODO   DOALL 255 (Parámetros: Localidad donde estás: Aquí)`
 
-`COGER _ 	AUTOG`
+`COGER _     AUTOG`
 
-`		DONE`
+  `           DONE`
 
 Estas dos entradas son las que permiten al jugador coger cualquier objeto. Coger un objeto significa cambiar su localidad desde AQUI \(255\) a LLEVADO \(254\).
 
