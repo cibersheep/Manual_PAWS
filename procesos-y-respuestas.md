@@ -416,3 +416,59 @@ MIRAR BOLSA  PREP  DENTRO
 
 **LISTAT** Debe ser seguido por un número de localidad y listará todos los objetos presentes en esa localidad. Si no hay objeto presente dirá «ninguno»; así que si tecleamos con la bolsa vacía, la respuesta será «En la bolsa hay: nada», lo cual es correcto, en oposición con LISTOBJ que veíamos que no ponía nada porque tiene un uso mucho más frecuente. Hagamos un test de la aventura para ver que de verdad podemos poner y sacar todo de la bolsa.
 
+### El pajarito
+
+El juego de práctica que hemos hecho es bastante fácil de resolver \(bastante tontito, la verdad\). Así que le vamos a añadir un poco de complejidad creando dos caracteres que vayan vagando por nuestro pequeño mundo. Estos caracteres son llamados PSI, o Caracteres Seudo Inteligentes, porque es obvio que aunque no pueden pensar, deben . parecerle al jugador como si lo hiciesen. Un PSI consiste principalmente en una colección de mensajes, banderas y entradas en tablas de procesos. Verás que con unas pocas entradas simples se pueden crear efectos sorprendentemente reales.
+
+La creación de un complejo PSI puede tomar mucho más tiempo, pero en general sigue los mismos principios que los que vamos a hacer con los nuestros: un pajarito y un perrito. El pájaro se pone para complicar el escenario de la siguiente manera: Cogerá el billete al principio del juego \(normalmente se le daría una localidad no usada como contenedor de los objetos que lleve el pájaro, pero nosotros usaremos la localidad 252, puesto que tenemos solamente un PSI que puede tener un objeto\).
+
+De modo que el jugador debe convencer al pajarito para que deje caer el billete. El intentar quitárselo o cogerlo dará el mensaje «No puedo hacer eso», y que el pajarito se vaya volando hacia otra parte.
+
+El pajarito también dará la paliza volando entre el pabellón de música y una ramita del árbol, y esto lo hará a intervalos regulares. La única manera de convencer al pajarito para que deje caer el billete de autobús es dejar caer el emparedado en la misma localidad.
+
+Lo primero que hay que hacer es ir a la tabla de Objetos Inicialmente En \[la tabla I\] y cambiar el objeto 4 a no creado, es decir, darle al objeto 4, que es el billete, el valor de 252.
+
+Esto hace que el objeto no exista como un objeto, porque lo lleva el pajarito en el pico. En el vocabulario insertemos también los nombres pajarito o pájaro y perro. Supondremos que el pájaro es 22 y el perro es 21, perro = 21, pájaro - 22, porque sus valores como palabras serán usados para poner las entradas en el orden correcto en las tablas de Procesos.
+
+Después, insertamos los siguientes mensajes. Podemos usar tinta verde \(en MODO EXTENDIDO, CAPS SHIFT + 4\) para los mensajes, no olvidando volver a poner tinta blanca al final \(MODO EXTENDIDO, CAPS SHIFT + 7\).
+
+#### MODO EXTENDIDO + CAPS SHIFT + NUMERO = EL COLOR DE LA TINTA
+
+	Mensaje 6
+
+	El pajarito deja caer el billete para coger el emparedado.
+
+	Mensaje 7
+
+	El pajarito se lleva velozmente el billete.
+
+	Mensaje 8
+
+	El pajarito me ignora.
+
+	Mensaje 9
+
+	Un pajarito anda rondando por aquí.
+
+	Mensaje 10
+
+	El pajarito tiene un billete en su pico.
+
+	Mensaje 11
+
+	Un pequeño pajarito se posa en la hierba.
+
+	Mensaje 12
+
+	El pajarito está ahora en la rama del árbol.
+
+	Mensaje 13
+
+	El pajarito ve al perro y sale pitando.
+
+	Mensaje 14
+
+	El pajarito se va.
+
+Luego pondremos los mensajes que vaya a usar el perro, pero ahora debemos seleccionar la tabla de Procesos y prepararnos para otras de las virguerías de PAW.
+
