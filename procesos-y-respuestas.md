@@ -308,7 +308,7 @@ Seleccionemos ahora proceso 1 tecleando \[ S 1 ENTER \] y usemos \[P\] para exam
       ZERO 0
       ABSENT 0
       LISTOBJ
-      
+
 *     _ PRESENT 0
       LISTOBJ
 ```
@@ -361,4 +361,54 @@ Hagamos un test del juego para ver las dos entradas en acción. Si tecleásemos 
 OESTE, OESTE, ARRIBA, COGER EL BILLETE. ABAJO, ESTE Y ESTE.
 
 tendríamos el juego terminado, con su mensaje de si quieres volver a jugar otra vez. Si no es así, vuelve a chequear las entradas en las tablas de Procesos 1 y 2.
+
+### Objetos dentro de algo
+
+Vamos a ver la habilidad de la bolsa para contener objetos. Ello requiere algunas entradas en la tabla de Respuestas, porque vamos a permitir al jugador que MIRE DENTRO DE LA BOLSA, así que necesitamos un nuevo mensaje: «En la bolsa hay:». Por lo tanto, selecciona la opción de MENSAJES e INSERTADO \(debe ser Mensaje 5\).
+
+Otra vez a la tabla de RESPUESTAS.
+
+Vamos a dotar al jugador de la opción de decir "Poner todo dentro de la bolsa", además de "poner \(objeto\) en la bolsa". Podemos usar exactamente el mismo sistema que hicimos con coger y dejar todo. Poner es un sinónimo de dejar, por lo que la Sentencia Lógica que estamos buscando debe ser PONER \_ \(es decir, cuando el jugador está tratando de poner o dejar algo\), pero si el jugador incluye EN LA BOLSA como parte de su frase, haremos que PAW ponga el objeto DENTRO DE LA BOLSA. Esto significa que hay que pasar por alto la entrada PUT \_ que ya está presente, si las palabras extras incluidas en la Sentencia Lógica especifican que el objeto es la bolsa.
+
+Para insertar esta entrada antes de una que ya esté presente, hay que hacer lo siguiente: normalmente PAW insertará otra entrada con el mismo valor de palabra después de cualquier entrada que ya esté presente. Es posible forzarlo a que lo haga antes especificando un número después de la inserción. \(Ojo: muy importante\).
+
+Intenta \[I PUT DEJA \_ 0 ENTER\], esto instruye a PAW para que ponga la entrada antes de la entrada número 1, puesto que le hemos dado un valor 0 antes de ENTER, y como la entrada número 1 es el PUT \_ que ya existe, PAW la pondrá antes de ella.
+
+Ahora pongamos los condactos que necesitamos y que son:
+
+	PREP EN  NOUN2  BOLSA  PRESENTI 1  AUTOP 1  DONE.
+
+Esto es un ejemplo de cómo nos aseguramos de que ciertas partes de la frase sean lo que nosotros queremos.
+
+**PREP** Es una condición que debe ser seguida por una preposición del vocabulario. Las preposiciones son palabras que se usan antes de un Nombre para mostrar su relación con otras palabras de la frase. En este caso la condición será favorable o acertará si el jugador ha usado en \(o dentro\) como parte de la frase.
+
+**NOUN2** Es una condición que debe ser seguida por un nombre del vocabulario. Será positiva si el jugador ha usado bolsa en la frase como segundo nombre. Combinado con la entrada previa tiene el efecto de hacer que PAW pare de buscar en las tablas de condacto a menos que la Sentencia Lógica fuera PONER \_ EN o DENTRO DE LA BOLSA donde la raya baja sería cualquier objeto.
+
+**AUTOP** Debe ser seguida por el número de una localidad. Nosotros hemos puesto la localidad 1 aparte con un propósito especial desde el comienzo de este ejemplo. Esto es, la hemos usado como si estuviera dentro de la bolsa. Por lo tanto AUTOP, de la misma forma que AUTOD, busca en la tabla de Objetos-Palabra por un nombre que haga pareja con el primer nombre de la Sentencia Lógica. Cuando ha encontrado uno, lo pone en la localidad que le hayamos dado, respondiendo «He puesto el o la \_ en o dentro de la bolsa».
+
+La entrada DEJA TODO ya existente, también se hace cargo de PONERLO TODO EN LA BOLSA, porque no especifica que EN LA BOLSA sea parte de la Sentencia Lógica, por lo tanto se disparará en ambas ocasiones, y en ambos casos 254 es la localidad desde la cual vendrán los objetos.
+
+Ahora para COGER un objeto FUERA DE LA BOLSA \(o sacar un objeto de la bolsa\), debemos teclear una entrada similar, que haga nula la entrada ya presente de COGER \_ . Así que tecleemos \[COGER \_ O ENTER\], con ello nos aseguramos que será puesta antes.
+
+	PREP FUERA  NOUN2  BOLSA  PRESENT 1  AUTOT 1  DONE
+
+**AUTOT** Debe ser seguido por un número de localidad, que debe ser de la cuál venga el objeto que se va a sacar. \(En este caso, la 1\).
+
+Por otra parte, para hacer la versión SACAR TODO necesitamos también otra entrada. De momento COGER TODO causa un DOALL 255, la cual es la posición actual del jugador. Para que saquemos todo de la bolsa necesitamos generar un contador de los objetos que estén dentro de ella \(localidad 1\), así que hay que insertar una entrada nueva de coger todo, que salte por encima de la existente. Tecleemos \[I COGER TODO 0 ENTER\]:
+
+	PREP FUERA  NOUN2  BOLSA  DOALL 1
+
+Todo esto se puede obviar usando los verbos sacar y meter \(pero es importante que lo veamos de esta forma por si hay que hacer alguna entrada complicada como esta\).
+
+También debemos poner una entrada que le permita al jugador EXAMINAR DENTRO DE LA BOLSA o MIRAR DENTRO DE LA BOLSA, y será:
+
+	MIRAR BOLSA  PREP  DENTRO
+
+	             MESSAJE 5
+
+	             LISTAT 1
+
+	             DONE
+
+**LISTAT** Debe ser seguido por un número de localidad y listará todos los objetos presentes en esa localidad. Si no hay objeto presente dirá «ninguno»; así que si tecleamos con la bolsa vacía, la respuesta será «En la bolsa hay: nada», lo cual es correcto, en oposición con LISTOBJ que veíamos que no ponía nada porque tiene un uso mucho más frecuente. Hagamos un test de la aventura para ver que de verdad podemos poner y sacar todo de la bolsa.
 
