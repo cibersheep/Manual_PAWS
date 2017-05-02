@@ -376,7 +376,9 @@ Intenta \[I PUT DEJA \_ 0 ENTER\], esto instruye a PAW para que ponga la entrada
 
 Ahora pongamos los condactos que necesitamos y que son:
 
-	PREP EN  NOUN2  BOLSA  PRESENTI 1  AUTOP 1  DONE.
+```
+PREP EN  NOUN2  BOLSA  PRESENTI 1  AUTOP 1  DONE.
+```
 
 Esto es un ejemplo de cómo nos aseguramos de que ciertas partes de la frase sean lo que nosotros queremos.
 
@@ -390,25 +392,28 @@ La entrada DEJA TODO ya existente, también se hace cargo de PONERLO TODO EN LA 
 
 Ahora para COGER un objeto FUERA DE LA BOLSA \(o sacar un objeto de la bolsa\), debemos teclear una entrada similar, que haga nula la entrada ya presente de COGER \_ . Así que tecleemos \[COGER \_ O ENTER\], con ello nos aseguramos que será puesta antes.
 
-	PREP FUERA  NOUN2  BOLSA  PRESENT 1  AUTOT 1  DONE
+```
+PREP FUERA  NOUN2  BOLSA  PRESENT 1  AUTOT 1  DONE
+```
 
 **AUTOT** Debe ser seguido por un número de localidad, que debe ser de la cuál venga el objeto que se va a sacar. \(En este caso, la 1\).
 
 Por otra parte, para hacer la versión SACAR TODO necesitamos también otra entrada. De momento COGER TODO causa un DOALL 255, la cual es la posición actual del jugador. Para que saquemos todo de la bolsa necesitamos generar un contador de los objetos que estén dentro de ella \(localidad 1\), así que hay que insertar una entrada nueva de coger todo, que salte por encima de la existente. Tecleemos \[I COGER TODO 0 ENTER\]:
 
-	PREP FUERA  NOUN2  BOLSA  DOALL 1
+```
+PREP FUERA  NOUN2  BOLSA  DOALL 1
+```
 
 Todo esto se puede obviar usando los verbos sacar y meter \(pero es importante que lo veamos de esta forma por si hay que hacer alguna entrada complicada como esta\).
 
 También debemos poner una entrada que le permita al jugador EXAMINAR DENTRO DE LA BOLSA o MIRAR DENTRO DE LA BOLSA, y será:
 
-	MIRAR BOLSA  PREP  DENTRO
-
-	             MESSAJE 5
-
-	             LISTAT 1
-
-	             DONE
+```
+MIRAR BOLSA  PREP  DENTRO
+             MESSAJE 5
+             LISTAT 1
+             DONE
+```
 
 **LISTAT** Debe ser seguido por un número de localidad y listará todos los objetos presentes en esa localidad. Si no hay objeto presente dirá «ninguno»; así que si tecleamos con la bolsa vacía, la respuesta será «En la bolsa hay: nada», lo cual es correcto, en oposición con LISTOBJ que veíamos que no ponía nada porque tiene un uso mucho más frecuente. Hagamos un test de la aventura para ver que de verdad podemos poner y sacar todo de la bolsa.
 
