@@ -26,7 +26,9 @@ Lo que esto significa es que si el jugador teclea I sólo, PAW lo equiparará co
 
 INVEN, después de que ha hecho una lista de todos los objetos que lleves, ya le dice automáticamente a PAW que ha hecho algo, y cuando PAW descubre esto, busca en el PARSER otra sentencia lógica, la cual el PARSER ofrece, decodificando las siguientes frases en el INPUT del jugador. PAW entonces coge esta nueva SL y la compara con todas las entradas que hay en la tabla de Respuestas, y así sucesivamente.
 
-Diagrama 4
+###### Diagrama 4
+
+![](/assets/Diagrama04.png)
 
 Este bucle \(loop\) se muestra en el diagrama 4 en forma de una carta de flujo que se puede seguir desde el cuadrado marcado con "comienzo". El bucle es bastante más complejo que lo que el diagrama te pueda parecer y de hecho se da una versión más completa en la guía técnica, pero de momento el diagrama 4 nos servirá.
 
@@ -48,11 +50,13 @@ Bien, FIN es un verbo en el vocabulario, así que como la mínima frase que PAW 
 
 QUIT es una condición \(la parte condicionante de la palabra condacc\). Una condición sólo decide si PAW continúa para llevar a cabo el siguiente condacto de la lista, es decir, no toma de por si ninguna acción, sino una decisión.
 
-QUIT lo que hace es determinar si el siguiente condacto puede ser ejecutado, preguntándole al jugador "¿estás seguro?". Si él contesta NO, entonces QUIT avisa a PAW que ha hecho "algo" y éste irá en busca de otra SL \(dejando en paz QUIT\).
+**QUIT** lo que hace es determinar si el siguiente condacto puede ser ejecutado, preguntándole al jugador "¿estás seguro?". Si él contesta NO, entonces QUIT avisa a PAW que ha hecho "algo" y éste irá en busca de otra SL \(dejando en paz QUIT\).
 
-Esta es una forma un poco diferente de tratar las condiciones en PAW, pero QUIT es una condición bastante especial, cono verás en el futuro. Si el jugador teclea "SI" entonces QUIT no hace nada, y deja que PAW busque el siguiente condacc de la secuencia, que entonces será TURNS. TURNS es una acción que imprime "has hecho x movidas o has dado x órdenes" en la pantalla. Donde x es el número de frases que el jugador ha tecleado desde el principio del juego. Aparte de este hecho, como tú no le has dicho a PAW que deje de buscar condaccs, entonces éste continuará buscando END.
+Esta es una forma un poco diferente de tratar las condiciones en PAW, pero QUIT es una condición bastante especial, cono verás en el futuro. Si el jugador teclea "SÍ" entonces QUIT no hace nada, y deja que PAW busque el siguiente condacc de la secuencia, que entonces será TURNS. 
 
-END es una acción también especial que imprime "¿apetece otro juego?, o ¿quieres jugar otra partida?" en la pantalla. Si el jugador teclea "SI" entonces END reiniciará el juego con todos los objetos en sus posiciones iniciales, etc. Si el jugador dice "NO" entonces generará un error "OK", lo cual te hará volver al menú editor de PAW. Si el menú editor de PAW no está presente \(por ejemplo, un juego ya terminado\), entonces el computador hace un reset.
+**TURNS** es una acción que imprime "has hecho x movidas o has dado x órdenes" en la pantalla. Donde x es el número de frases que el jugador ha tecleado desde el principio del juego. Aparte de este hecho, como tú no le has dicho a PAW que deje de buscar condaccs, entonces éste continuará buscando END.
+
+**END** es una acción también especial que imprime "¿apetece otro juego?, o ¿quieres jugar otra partida?" en la pantalla. Si el jugador teclea "SI" entonces END reiniciará el juego con todos los objetos en sus posiciones iniciales, etc. Si el jugador dice "NO" entonces generará un error "OK", lo cual te hará volver al menú editor de PAW. Si el menú editor de PAW no está presente \(por ejemplo, un juego ya terminado\), entonces el computador hace un reset.
 
 **MUY IMPORTANTE:** Debes tener siempre una acción END en alguna parte del juego, porque si no, no podrás volver a la sección editora tan fácilmente cuando estés probando el juego. Tendrás que hacer uso de la tecla BREAK, la cual solamente trabaja mientras que PAW está procesando, y como no es fácil pillar a PAW haciéndolo, porque es muy rápido, te será muy difícil. Las otras entradas que ya están presentes en la base de datos, se hacen cargo de varios comandos estandarizados que los jugadores normalmente necesitarán en la aventura.
 
@@ -62,13 +66,13 @@ Tú te estarás preguntando por qué estas entradas están en una tabla y no for
 
 Pues bien mi querido saltamontes, la razón es que, aparte del hecho de que es mucho más fácil ponerlas en una tabla que en el propio juego, TU JUEGO A LO MEJOR NO LAS NECESITA, y de esta forma las puedes borrar cuando quieras.
 
-DESC es una acción. De hecho, es la que se usa en la entrada "M \_" de la tabla. Y esta acción hace que PAW abandone la búsqueda por la tabla de respuestas y reDESCriba la localidad actual del jugador. También tiene varios sinónimos: mirar, describir, etc., en el Vocabulario.
+**DESC** es una acción. De hecho, es la que se usa en la entrada "M \_" de la tabla. Y esta acción hace que PAW abandone la búsqueda por la tabla de respuestas y reDESCriba la localidad actual del jugador. También tiene varios sinónimos: mirar, describir, etc., en el Vocabulario.
 
-SAVE Y LOAD son dos acciones que permiten hacer un SAVE y un RELOAD del estado actual del juego en cinta. La posición actual del juego incluye también cualquier otra pieza de información que se necesite para restaurar exactamente el juego en el mismo estado en que estaba, ello incluye los valores de las banderas, las posiciones de los objetos, y mucha más información. No debes confundir aquí los anglicismos SAVE y LOAD que hemos dejado en el vocabulario, con las acciones SAVE y LOAD. Nosotros hemos incluido también otros sinónimos, como GRABAR y CARGAR, en el Vocabulario, pero todos ellos usarán también las acciones SAVE y LOAD en la tabla de Respuestas.
+**SAVE Y LOAD** son dos acciones que permiten hacer un SAVE y un RELOAD del estado actual del juego en cinta. La posición actual del juego incluye también cualquier otra pieza de información que se necesite para restaurar exactamente el juego en el mismo estado en que estaba, ello incluye los valores de las banderas, las posiciones de los objetos, y mucha más información. No debes confundir aquí los anglicismos SAVE y LOAD que hemos dejado en el vocabulario, con las acciones SAVE y LOAD. Nosotros hemos incluido también otros sinónimos, como GRABAR y CARGAR, en el Vocabulario, pero todos ellos usarán también las acciones SAVE y LOAD en la tabla de Respuestas.
 
 Es de notar que ambos SAVE y LOAD ya de por sí hacen una acción DESC cuando han terminado. Lo cual significa que cualquier condacc que siga, será ignorado igualmente en el INPUT del jugador.
 
-RAMSAVE Y RAMLOAD son dos acciones similares a SAVE y LOAD, excepto que ellos usan un "buffer" \(área de memoria libre\) para guardar la posición del juego. Esto significa que no tienes que andar toqueteando cintas.
+**RAMSAVE Y RAMLOAD** son dos acciones similares a SAVE y LOAD, excepto que ellos usan un "buffer" \(área de memoria libre\) para guardar la posición del juego. Esto significa que no tienes que andar toqueteando cintas.
 
 Solamente una posición puede ser guardada, y como la guarda en la memoria, suponemos que sabes que si apagas el ordenador desaparecerá. Aunque de todos modos, esto debes hacérselo ver claramente al jugador en las instrucciones. También el área del buffer se pierde cuando vuelves al editor, porque tú puedes desear cambiar algún diseño en el juego entre dos textos.
 
@@ -78,7 +82,7 @@ Ambas acciones son seguidas automáticamente por una acción DESC, puesto que a 
 
 Si a PAW se le acaban los condaccs en una lista sin haberle aclarado que ya ha hecho \(done\) algo, sencillamente "caerá" hasta el final, y al darse cuenta de esto, continuará en su búsqueda de otro SL. También dijimos que QUIT era una condición bastante especial. Para comenzar, es la única condición que busca información del jugador, y por otra parte, también le informa a PAW de que algo ha sido hecho si el jugador teclea "NO" \(es decir, que no quiere abandonar el juego\), lo cual hace que PAW comience a buscar otro nuevo SL.
 
-MUY IMPORTANTE: una condición normal, si "falla", sencillamente hará que PAW continúe buscando en la tabla de Respuestas otra condición que haga juego con la SL.
+**MUY IMPORTANTE:** una condición normal, si "falla", sencillamente hará que PAW continúe buscando en la tabla de Respuestas otra condición que haga juego con la SL.
 
 Los otros condactos que están usados se considerarán ahora en relación con las entradas de las cuales son parte. Para simplificar nuestra explicación, debemos considerar la posición de un objeto en el juego.
 
@@ -108,9 +112,9 @@ Vamos a ver otras dos entradas en la tabla de Respuestas:
 
 `COGER _     AUTOG`
 
-  `           DONE`
+`DONE`
 
-Estas dos entradas son las que permiten al jugador coger cualquier objeto. Coger un objeto significa cambiar su localidad desde AQUI \(255\) a LLEVADO \(254\).
+Estas dos entradas son las que permiten al jugador coger cualquier objeto. Coger un objeto significa cambiar su localidad desde AQUÍ \(255\) a LLEVADO \(254\).
 
 Ignoremos por ahora la entrada "coge todo" y vamos a estudiar la entrada "COGER \_". Como dijimos antes, esa línea baja significa "cualquier palabra", así que no importa qué nombre teclee el jugador en una frase que contenga el COGER. La entrada COGER \_ siempre casará \(esto es lo que se llama "cargando" o "preparando" una entrada\).
 
@@ -132,7 +136,115 @@ Si no encuentra ninguna entrada, entonces hay cinco posibilidades.
 
 Si el AUTOG funciona, entonces PAW mira al siguiente condacc.
 
-DONE solamente le dice a PAW que la entrada ha terminado y que debe de ir y buscar otra SL.
+**DONE** solamente le dice a PAW que la entrada ha terminado y que debe de ir y buscar otra SL.
 
 Ahora miraremos a la entrada GET ALL. Como habrás supuesto, esta entrada lo que hace es intentar coger todos los objetos que estén en la localidad donde estás tú.
+
+Explicaremos el mecanismo:
+
+Si el jugador teclea la frase COGE TODO, el PARSER creará una sentencia lógica \(SL\) de "COGE TODO" y entonces hará pareja con la entrada presente en esta tabla y PAW pasará a ejecutar la acción DOALL.
+
+**DOALL** es una acción que debe ser seguida con un parámetro. El parámetro nos da el número de la localidad que usaremos.
+
+Lo que hace DOALL es buscar la lista de localidades en la cuál se encuentra cada objeto, intentando encontrar entradas que sean iguales para el parámetro que se ha dado \(que en este caso es 255, una localidad especial que significa que se use la localidad en la cual el jugador esté presente\). Cuando encuentra uno similar, o el mismo, entonces se va a la tabla objetos relacionados con palabras para encontrar la palabra del Vocabulario que describe el número del objeto.
+
+Esta palabra se pone en la actual SL \(reemplazando el nombre todo\) y una bandera se resetea para indicar que DOALL está activo.
+
+Luego PAW sigue mirando el resto de la tabla de Respuestas buscando una entrada que haga juego con la SL recientemente modificada.
+
+Esta entrada será COGE \_ \(de la cuál hemos hablado antes\), que cogerá el objeto que PAW haya buscado en la tabla de Objetos.
+
+Cuando haya terminado de hacer lo anterior, PAW se dará cuenta de que todavía permanece activo el DQALL, o sea, la bandera está seteada y vuelve otra vez a la entrada COGE TODO.
+
+En realidad lo que hace es saltar directamente a la acción DOALL y buscar otro objeto para generar una nueva SL, y así sucesivamente para todos los objetos que estén en la localidad especificada. Cuando se acaban los objetos, entonces la bandera se resetea para demostrarle a PAW que no está activo el bucle y se le dice a PAW que busque otra SL.
+
+Esto podría parecer un modo bastante complejo de ejecutar esa acción, pero si examinamos a las entradas similares que tratan de PONERSE, QUITARSE y DEJAR, veremos que utilizan el mismo mecanismo.
+
+**AUTOD, AUTOW y AUTOR** trabajan de una manera muy similar a AUTOG, mientras que DOALL sencillamente se limita a cambiar la localidad actual para ejecutar las acciones. Por ejemplo, usa 254 \(LLEVADAS\) como el parámetro en la acción DROP y también en la acción WEAR \(es decir, DOALL busca todos los objetos que lleves cuando intentas dejarlos caer o ponértelos encima\); y utiliza la localidad 253 \(LLEVADO PUESTO ENCIMA\) cuando se trata de quitarse todo.
+
+Si lo anterior te parece un poco complicado, no te preocupes de momento, porque DOALL es uno de los condactos más complejos de PAW, y poco a poco lo irás entendiendo. Sería interesante que en este momento hagas un test de la aventura, y trates todos los comandos de "dejar todo", "coger todo", etc., para que el mecanismo se te haga más claro.
+
+### Mensajes
+
+Antes de que continuemos con la tabla de RESPUESTAS vamos a meter algunas entradas en otra tabla que necesitaremos. Así es que, desde el menú principal, teclea \[ M \] para mensajes. La tabla de mensajes es poco complicada. El submenú es muy parecido a los de localidades y descripciones de objetos. El objetivo de los mensajes es contener todo el texto que se necesita para responder a las entradas del jugador, es decir, todo lo que está sucediendo durante el juego, \(excepto por los mensajes que ya PAW pone por su cuenta, como "Yo no puedo hacer eso", etc.\). Si tecleas la opción \[ P \] verás que ya hay una entrada presente.
+
+Ahora vamos a poner todos los comandos para cuando el jugador intente examinar las cosas en el juego \(una de las órdenes más frecuentes y más importantes de toda la aventura\). El que un objeto sea examinable, solamente requiere que el escritor haya dejado un mensaje que dé más información sobre ese objeto, por ejemplo, en el caso de la manzana diríamos: "La manzana está madurita y muy sabrosa".
+
+Cambia el texto del mensaje 0 \(A 0 ENTER\) e inserta los siguientes mensajes para poder examinar todas las otras cosas del juego.
+
+	Mensaje 1 
+
+	Es un emparedado delicioso de jamón y queso.
+
+	Mensaje 2
+
+	El billete tiene un número y el nombre de la compañía de transportes para aventureros, impreso.
+
+	Mensaje 3
+
+	El banco está anclado firmemente a una base de concreto.
+
+En nuestro juego de práctica solamente usamos cuatro objetos, pero en los juegos más complicados hay que poner muchos detalles para muchas cosas, aunque no sean muy importantes en el juego, porque esto le da un toque de realismo que hace que el jugador se sienta atraído o envuelto por la atmósfera.
+
+Así que volvamos a la tabla de RESPUESTAS \(R\) y a trabajar.
+
+Vamos a comenzar con la manzana. La frase que el jugador tecleará será "EXAMINAR LA MANZANA" \(o EXAMINA MANZANA si es bastante vago\), y esto producirá una SENTENCIA LOGICA de "EXAMINAR MANZANA". Así que necesitaremos poner una entrada con estas dos palabras.
+
+Teclea \(I EXAMINAR MANZANA ENTER\), PAW ignorará las letras que sobren \(que sean más de cinco\), e imprimirá la entrada en la parte de arriba de una pantalla limpia y esperará a que tu teclees la lista de condactos para esa entrada.
+
+Pero nosotros sólo vamos a permitir que el jugador examine la manzana si está AQUI, LLEVADA o PUESTA ENCIMA \(por ejemplo, en un bolsillo\), porque la mayoría de la gente no tiene la habilidad de mirar a través de las paredes para saber si la manzana está en otra localidad. Estos tres parámetros AQUI, LLEVADO, o PUESTO ENCIMA todos se conocen como PRESENTE, y por ello basta con poner la condición PRESENT seguida del número del objeto que estemos considerando \(por ejemplo, la manzana, es el objeto 3\).
+
+Si el objeto está presente, entonces podemos hacer aparecer nuestro mensaje 0, que describe el objeto usando la acción MESSAGE, que debe ser seguido del número del mensaje que quieras que aparezca. Finalmente lo acabaremos todo con la acción DONE para decirle a PAW que ya hemos completado lo que queríamos hacer.
+
+Entonces teclea \(PRESENT 3 MESSAGE 0 DONE ENTER\) y PAW concestará que el mensaje está "insertado".
+
+Ahora vamos otra vez al submenú con cualquier tecla, y tecleemos \(P EXAMINAR\) para examinar nuestra nueva creada entrada.
+
+Por cierto, aquí conviene decir que si quieres ver la tabla desde el principio basta con teclear P. Si tecleas P seguida por I un VERBO, verás todas las entradas que pertenecen a ese verbo, y si tecleas P seguida por un VERBO y un NOMBRE verás todas las entradas del verbo y el nombre. Nuestra entrada debe parecerse a:
+
+	MIRAR-EXAMINAR 	MANZANA	PRESENT 3
+
+				MESSAGE 0
+
+				DONE
+
+Aquí tenemos un ejemplo clásico de la tabla de Respuestas, porque si la condición PRESENT 3 falla, es decir el objeto no está presente, entonces PAW continuará buscando por otra entrada diferente para hacer coincidir su SENTENCIA LOGICA.
+
+En este caso encontrará la siguiente entrada, que es MIRAR \_, y ésta entrada producirá una descripción de la localidad en que estamos actualmente \(por medio de la acción DESC\), después de que la acción PLUS haya añadido 128 a la bandera 29.
+
+Esto forzará a PAW a dibujar cualquier gráfico que exista en esa localidad y al mismo tiempo hacer una descripción. Sobre esto entraremos con más detalle cuando hablemos de los gráficos. Si asumimos que la manzana está realmente presente, entonces PAW continuará con el siguiente condacc y desplegará nuestra descripción de la manzana \(MENSAJE 0\), luego, la acción DONE le dice a PAW que vaya I y busque otra Sentencia Lógica, porque ya ha hecho algo \(esto previene que continúe y pase lo que pasó antes, es decir que coja la siguiente entrada que es LOOK \_\). Si hay una entrada que es incorrecta, se puede corregir tecleando por ejemplo, A MIRAR MANZANA. Sin embargo, en las tablas de Procesos puede haber más de una entrada que tenga los mismos valores de palabras, y entonces todas ellas se verán presentadas una a una para que se pueda corregir.
+
+Si no quieres corregir una en particular, sencillamente teclea ENTER y déjala tal como está. Para borrar una entrada completamente de una tabla, lo que hay que hacer es quitar todos sus condaccs.
+
+Por ejemplo, corrige la entrada con A, pulsa la tecla EDIT dos veces para limpiar el buffer y pulsa ENTER. Con eso la entrada quedará completamente borrada.
+
+Pero de momento, si el jugador trata de EXAMINAR cualquier otra cosa excepto la manzana \(o cuando trata de EXAMINAR LA MANZANA y ella no está presente\) entonces, como vimos antes, se le recompensará con una descripción de su localidad actual.
+
+Vamos a insertar las entradas para poder examinar el emparedado, el billete de autobús y el banco. Las entradas las listaremos como las verías si usaras la opción P después de que fueran tecleadas, y pondremos al lado algunos comentarios solamente para referencia. Pero no te olvides de que hay que meterlas como hiciste para introducir EXAMINAR MANZANA anteriormente.
+
+	MIRAR	EMPAREDADO	PRESENT	2 ;	Que el emparedado esté aquí
+
+				MESSAGE 1 ;	Descríbelo
+
+				DONE
+
+	MIRAR	BILLETE		PRESENT 4 ;	El billete está aquí
+
+				MESSAGE 2
+
+				DONE
+
+	MIRAR	BANCO		AT 4 ;	AT porque el banco no es un objeto
+
+				MESSAGE 3 ;	y entonces se chequea la localidad
+
+				DONE
+
+AT es una condición que debe de ser seguida con un número de localidad y que será válida \(es decir, dejará que PAW continúe al siguiente condacto\), si el jugador está en esa misma localidad. Esto lo tuvimos que usar con el banco porque no era un objeto, pero, al ser parte de la descripción, al volver a la localidad 4 siempre estará ahí. Entonces lo que comprobamos es que el jugador esté en la localidad 4.
+
+Usa ahora la opción T para comprobar tu aventura y ver que lo anterior funcione.
+
+
+
+
 
