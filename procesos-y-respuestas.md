@@ -40,11 +40,11 @@ Hacer I INVEN
 
 Como habrás deducido hábilmente, esta entrada toma en cuenta otra forma de la cual el jugador puede pedir una lista de objetos. Veamos ahora la entrada que pone QUIT \_ \(para hacer esto basta con apretar cualquier tecla excepto BREAK, ESPACIO o N\):
 
-`FIN _     QUIT`
-
-`TURNS`
-
-`END`
+```
+FIN _     QUIT
+TURNS
+END
+```
 
 Bien, FIN es un verbo en el vocabulario, así que como la mínima frase que PAW considerará válida es un verbo, si FIN se teclea solo entonces ya el PARSER generará una SL de "FIN \_". En su búsqueda a través de la tabla de Respuestas, PAW encontrará la entrada que hemos visto más arriba y empezará a ejecutar los condacc.
 
@@ -98,21 +98,20 @@ NO PRESENTES: ¡En cualquier otro sitio! Esto también incluirá la localidad 25
 
 Resumiendo:
 
-`Aquí =            Localidad 255`
-
-`Llevados =        Localidad 254`
-
-`Puestos encima =  Localidad 253`
-
-`No presentes =    Localidad 252 = No creado todavía.`
+```
+Aquí =            Localidad 255
+Llevados =        Localidad 254
+Puestos encima =  Localidad 253
+No presentes =    Localidad 252 = No creado todavía.
+```
 
 Vamos a ver otras dos entradas en la tabla de Respuestas:
 
-`COGE TODO   DOALL 255 (Parámetros: Localidad donde estás: Aquí)`
-
-`COGER _     AUTOG`
-
-`DONE`
+```
+COGE TODO   DOALL 255 (Parámetros: Localidad donde estás: Aquí)
+COGER _     AUTOG
+DONE
+```
 
 Estas dos entradas son las que permiten al jugador coger cualquier objeto. Coger un objeto significa cambiar su localidad desde AQUÍ \(255\) a LLEVADO \(254\).
 
@@ -304,16 +303,16 @@ Como PAW buscará siempre en esta tabla antes de que haya un nuevo Input \(una n
 Seleccionemos ahora proceso 1 tecleando \[ S 1 ENTER \] y usemos \[P\] para examinar las entradas que ya están presentes:
 
 ```
-*     _ NEWLINE
+*  _  NEWLINE
       ZERO 0
       ABSENT 0
       LISTOBJ
 
-*     _ PRESENT 0
+*  _  PRESENT 0
       LISTOBJ
 ```
 
-Un asterisco «\*» significa «cualquier palabra» como significaba “\_”pero con una diferencia: siempre que PAW inserta entradas en una tabla de Procesos \(y ello incluye la de Respuestas\), las insertará según el orden de valor, primero el Verbo y segundo el Nombre \(por ejemplo, todas las entradas que se refieran a un mismo verbo irán una detrás de otra en orden ascendente según su valor de ncombre\).
+Un asterisco «\*» significa «cualquier palabra» como significaba «\_» pero con una diferencia: siempre que PAW inserta entradas en una tabla de Procesos \(y ello incluye la de Respuestas\), las insertará según el orden de valor, primero el Verbo y segundo el Nombre \(por ejemplo, todas las entradas que se refieran a un mismo verbo irán una detrás de otra en orden ascendente según su valor de ncombre\).
 
 PAW considera que la raya baja «\_» tiene un valor de 255 \(por lo tanto, será siempre la última entrada\). Sin embargo, considera que asterisco «\*» tiene el valor de 1 \(por lo tanto será siempre la primera entrada\).
 
