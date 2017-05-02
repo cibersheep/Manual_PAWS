@@ -52,7 +52,7 @@ QUIT es una condición \(la parte condicionante de la palabra condacc\). Una con
 
 **QUIT** lo que hace es determinar si el siguiente condacto puede ser ejecutado, preguntándole al jugador "¿estás seguro?". Si él contesta NO, entonces QUIT avisa a PAW que ha hecho "algo" y éste irá en busca de otra SL \(dejando en paz QUIT\).
 
-Esta es una forma un poco diferente de tratar las condiciones en PAW, pero QUIT es una condición bastante especial, cono verás en el futuro. Si el jugador teclea "SÍ" entonces QUIT no hace nada, y deja que PAW busque el siguiente condacc de la secuencia, que entonces será TURNS. 
+Esta es una forma un poco diferente de tratar las condiciones en PAW, pero QUIT es una condición bastante especial, cono verás en el futuro. Si el jugador teclea "SÍ" entonces QUIT no hace nada, y deja que PAW busque el siguiente condacc de la secuencia, que entonces será TURNS.
 
 **TURNS** es una acción que imprime "has hecho x movidas o has dado x órdenes" en la pantalla. Donde x es el número de frases que el jugador ha tecleado desde el principio del juego. Aparte de este hecho, como tú no le has dicho a PAW que deje de buscar condaccs, entonces éste continuará buscando END.
 
@@ -172,17 +172,16 @@ Ahora vamos a poner todos los comandos para cuando el jugador intente examinar l
 
 Cambia el texto del mensaje 0 \(A 0 ENTER\) e inserta los siguientes mensajes para poder examinar todas las otras cosas del juego.
 
-	Mensaje 1 
+```
+Mensaje 1 
+Es un emparedado delicioso de jamón y queso.
 
-	Es un emparedado delicioso de jamón y queso.
+Mensaje 2
+El billete tiene un número y el nombre de la compañía de transportes para aventureros, impreso.
 
-	Mensaje 2
-
-	El billete tiene un número y el nombre de la compañía de transportes para aventureros, impreso.
-
-	Mensaje 3
-
-	El banco está anclado firmemente a una base de concreto.
+Mensaje 3
+El banco está anclado firmemente a una base de concreto.
+```
 
 En nuestro juego de práctica solamente usamos cuatro objetos, pero en los juegos más complicados hay que poner muchos detalles para muchas cosas, aunque no sean muy importantes en el juego, porque esto le da un toque de realismo que hace que el jugador se sienta atraído o envuelto por la atmósfera.
 
@@ -202,11 +201,11 @@ Ahora vamos otra vez al submenú con cualquier tecla, y tecleemos \(P EXAMINAR\)
 
 Por cierto, aquí conviene decir que si quieres ver la tabla desde el principio basta con teclear P. Si tecleas P seguida por I un VERBO, verás todas las entradas que pertenecen a ese verbo, y si tecleas P seguida por un VERBO y un NOMBRE verás todas las entradas del verbo y el nombre. Nuestra entrada debe parecerse a:
 
-	MIRAR-EXAMINAR 	MANZANA	PRESENT 3
-
-				MESSAGE 0
-
-				DONE
+```
+MIRAR-EXAMINAR     MANZANA    PRESENT 3
+                              MESSAGE 0
+                              DONE
+```
 
 Aquí tenemos un ejemplo clásico de la tabla de Respuestas, porque si la condición PRESENT 3 falla, es decir el objeto no está presente, entonces PAW continuará buscando por otra entrada diferente para hacer coincidir su SENTENCIA LOGICA.
 
@@ -222,29 +221,159 @@ Pero de momento, si el jugador trata de EXAMINAR cualquier otra cosa excepto la 
 
 Vamos a insertar las entradas para poder examinar el emparedado, el billete de autobús y el banco. Las entradas las listaremos como las verías si usaras la opción P después de que fueran tecleadas, y pondremos al lado algunos comentarios solamente para referencia. Pero no te olvides de que hay que meterlas como hiciste para introducir EXAMINAR MANZANA anteriormente.
 
-	MIRAR	EMPAREDADO	PRESENT	2 ;	Que el emparedado esté aquí
+```
+MIRAR    EMPAREDADO    PRESENT 2 ;    Que el emparedado esté aquí
+                       MESSAGE 1 ;    Descríbelo
+                       DONE
 
-				MESSAGE 1 ;	Descríbelo
+MIRAR    BILLETE       PRESENT 4 ;    El billete está aquí
+                       MESSAGE 2
+                       DONE
 
-				DONE
-
-	MIRAR	BILLETE		PRESENT 4 ;	El billete está aquí
-
-				MESSAGE 2
-
-				DONE
-
-	MIRAR	BANCO		AT 4 ;	AT porque el banco no es un objeto
-
-				MESSAGE 3 ;	y entonces se chequea la localidad
-
-				DONE
+MIRAR    BANCO         AT 4 ;         AT porque el banco no es un objeto
+                       MESSAGE 3 ;    y entonces se chequea la localidad
+                       DONE
+```
 
 AT es una condición que debe de ser seguida con un número de localidad y que será válida \(es decir, dejará que PAW continúe al siguiente condacto\), si el jugador está en esa misma localidad. Esto lo tuvimos que usar con el banco porque no era un objeto, pero, al ser parte de la descripción, al volver a la localidad 4 siempre estará ahí. Entonces lo que comprobamos es que el jugador esté en la localidad 4.
 
 Usa ahora la opción T para comprobar tu aventura y ver que lo anterior funcione.
 
+### Las tablas de procesos \(P1 : P2 : ETC.\)
+
+Vamos a estudiar ahora la opción más potente que tiene el menú principal: las tablas de Procesos. Dijimos antes que la tabla de Respuesta era una opción especial de las tablas de Procesos, y de hecho lo es. Si tú seleccionas la opción P del menú verás un submenú muy similar al de la tabla de Respuestas, excepto que tiene dos opciones extra.
+
+Fíjate que el título dice «Procesos 2», esto es porque hay más de una tabla de procesos en PAW, de hecho puede haber 254 tablas de procesos como veremos.
+
+De momento hay dos tablas de Proceso en la base de datos y PAW, tal como hacía en el de Respuestas, buscará a través de ellas, pero las buscará no después de haber obtenido una sentencia lógica, sino de la siguiente forma:
+
+Proceso 1:
+
+El proceso 1 es chequeado inmediatamente después de que PAW ha descrito una localidad. Esto permite que la información se imprima solamente cuando el jugador llegue a esa localidad o cuando haya obtenido una redescripción.
+
+Proceso 2:
+
+El proceso 2 es revisado justo antes de pedir una nueva sentencia lógica al PARSER. Es usado como si fuera el «turno» de PAW para jugar.
+
+Estudia detenidamente las formas en que PAW busca en la tabla de Proceso 1 y en la tabla de Proceso 2, ES MUY IMPORTANTE.
+
+La diferencia principal es que en estas tablas, PAW no intenta buscar una entrada similar a una sentencia lógica, sino que EJECUTA CADA ENTRADA.
+
+De momento, mientras jugábamos en nuestro juego de demostración, hemos tenido que terminar siempre tecleando FIN. Ahora en la "Historia Original" lo que teníamos que hacer era ayudar al pasajero a encontrar el billete de autobús antes de que éste llegase. Es obvio que podemos poner una entrada en la tabla de Respuestas para que si el jugador teclea "coger billete" \(y este estuviese presente\), se termine el juego.
+
+	COGER	BILLETE	PRESENT 4 ;	El billete está ahí
+
+			TURNS
+
+			END
+
+pero pensamos que sería mucho más conveniente terminar el juego cuando el jugador vuelva a la parada del autobús.
+
+Para hacer eso, primero necesitamos un mensaje que describa la llegada del autobús. Así que vamos al menú principal, seleccionemos la opción mensaje y pongamos el siguiente mensaje:
+
+	MENSAJE 4
+
+	El autobús llega. Le doy el billete al conductor, quien sonríe y dice: "siento haber llegado tarde, supongo que no ha tenido que esperar mucho".
+
+Volvamos ahora a la tabla de Procesos. Aún cuando las palabras no tienen ningún significado en esta tabla, puede ser útil poner las palabras adecuadas con lo que la entrada hace. La entrada que determina el final del juego será llamada " \_ AUTOBUS" \(debemos comenzar con \_ porque PAW solamente permite el nombre Autobús en una posición que corresponda al nombre, o sea, primero el Verbo y luego el Nombre\).
+
+Así que teclea \[ I \_ AUTOBUS ENTER \].
+
+Las condiciones para terminar el juego son: que el jugador se encuentre en la parada del autobús \(localidad 2\) y que lleve el billete del autobús \(objeto 4\).
+
+La primera condición será AT 2, la segunda será CARRIED 4, así que la entrada final será:
+
+	AT 2 	CARRIED 4 	MESSAGE 4 	TURNS
+
+	END
+
+Si se usa P, se verá que la entrada aparece de la siguiente forma:
+
+	\_ AUTOBUS	AT 2
+
+			CARRIED 4
+
+			MESSAGE 4
+
+			TURNS
+
+			END
+
+Como PAW buscará siempre en esta tabla antes de que haya un nuevo Input \(una nueva Sentencia Lógica\) por parte del jugador, cada vez que se den las condiciones descritas por CARRIED se ejecutarán las acciones Message Turns y End. Y esto es independiente de cualquier cosa que el jugador teclee para llegar a la localidad donde está la parada de autobús.
+
+Seleccionemos ahora proceso 1 tecleando \[ S 1 ENTER \] y usemos \[P\] para examinar las entradas que ya están presentes:
+
+	\* 	\_ NEWLINE
+
+		ZERO 0
+
+		ABSENT 0
+
+		LISTOBJ
 
 
 
+	\* 	\_ PRESENT 0
+
+		LISTOBJ
+
+
+
+Un asterisco «\*» significa «cualquier palabra» como significaba “\_”pero con una diferencia: siempre que PAW inserta entradas en una tabla de Procesos \(y ello incluye la de Respuestas\), las insertará según el orden de valor, primero el Verbo y segundo el Nombre \(por ejemplo, todas las entradas que se refieran a un mismo verbo irán una detrás de otra en orden ascendente según su valor de ncombre\).
+
+PAW considera que la raya baja «\_» tiene un valor de 255 \(por lo tanto, será siempre la última entrada\). Sin embargo, considera que asterisco «\*» tiene el valor de 1 \(por lo tanto será siempre la primera entrada\).
+
+La posición de las entradas en una tabla de procesos es muy importante. Por ejemplo, las dos entradas que hemos mencionado arriba, siempre deben estar en el mismo orden que las hemos dado. Ellas deben ser ejecutadas inmediatamente después de que se ha impreso la descripción para una localidad y por ello es por lo que usamos el asterisco, para que estén al principio de la tabla \(usamos la raya baja «\_» como si fuese un nombre para poder meter alguna entrada antes de ella, como veremos en su momento\).
+
+Veamos por qué se ponen esas dos entradas. Como PAW ejecuta siempre todas las entradas que hayan en Proceso 1 y Proceso 2 \(suponemos que te darás cuenta de que lo hará de cualquier forma, porque una entrada que lleve \* \_ hará pareja con cualquier Input del jugador, es decir, con cualquier Sentencia Lógica\) la acción NEWLINE siempre será ejecutada.
+
+
+
+**NEWLINE** Imprime espacios hasta el final de la línea actual. Esto permite que el mismo color de Papel continúe hasta el final de la línea sin tener que teclear todos los espacios. Su principal objetivo aquí es asegurar que cualquier texto que se imprima lo sea en la siguiente línea, porque PAW no pone automáticamente una línea en blanco después de la descripción de las localidades. La guía técnica nos mostrará cómo usar este efecto para modificar una descripción de localidad, para reflejar los cambios que haya.
+
+De ahora en adelante las dos entradas deben ser consideradas como una pareja, su propósito final es hacer una lista de los objetos que estén en la localidad actual. Veamos cómo: PAW usa la bandera 0 para determinar si hay luz para que el jugador pueda ver \(esto no ha sido utilizado de momento en nuestra demostración\), si no hay luz, la bandera tendrá un valor diferente de 0 y PAW contestará «está muy oscuro para ver» en vez de hacer una descripción de la localidad. En este caso los objetos que están presentes no deben aparecer en lista puesto que se supone que el jugador no los puede ver.
+
+El objeto 0 siempre es tomado por PAW como el objeto que provee luz \(objeto 0 = fuente de luz\), esto es por lo que en nuestro juego de demostración, el objeto 0 es una antorcha encendida. Si este objeto está presente cuando en el juego se supone que está oscuro \(o sea, que la bandera 0 no sea 0\) entonces, la sola presencia del objeto 0 tendrá preferencia sobre el hecho de que no haya luz, y los objetos deben ser descritos.
+
+Estos dos últimos párrafos son muy importantes y debes releerlos hasta estar seguro de que los entiendes.
+
+Así pues, vemos que las dos entradas nos dan un ejemplo de cómo se usa PAW para crear una situación OR. Por ejemplo, haz una lista de los objetos si hay luz o \(OR\) el objeto 0 está presente.
+
+
+
+**ZERO** Es la primera condición que hemos encontrado hasta ahora que chequea el estado de una bandera. Zero 0 será positiva si la bandera cero contiene 0, lo cual significa que hay luz.
+
+**ABSENT** Chequea que el objeto 0 no esté presente \(es el opuesto a la condición PRESENT, todas las condiciones tienen su opuesto. Por ejemplo, AT tiene su opuesto en NOTAT, etc\). Como la siguiente \* \_ va a hacer un listado de los objetos, si el objeto 0 \(la fuente de luz\) está presente, no queremos que la primera entrada de \* \_ sea positiva también \(la cual tiene en cuenta una hipotética situación, en la cual haya luz y el objeto 0 también esté presente, y entonces se haría una lista de los objetos dos veces\).
+
+**LISTOBJ** Hará una lista de todos los objetos que estén presentes en la localidad actual. Si ninguno está presente no hace nada. Sería un poco tonto decir «Puedo ver nada».
+
+Nota importante: Repasa bien lo anterior, puesto que es una característica de PAW que necesitarás usar con frecuencia en tus juegos.
+
+Ahora vamos a poner una forma más adecuada de pasar de la pantalla de introducción al principio del juego en la parada de autobús. Lo haremos de la siguiente forma:
+
+	\*	\*	AT 0
+
+			ANYKEY
+
+			GOTO 2
+
+			DESC
+
+Inserta esta entrada en Procesos 1 \(asegúrate de que todavía está seleccionado\) usando \[I \* \* ENTER\]. Esto nos introduce dos nuevos condactos.
+
+
+
+**ANYKEY** Imprime "Pulse tecla para continuar" en la parte inferior de la pantalla, y espera a que pulses una tecla antes de permitirle a PAW continuar.
+
+
+
+**GOTO** Debe ser seguido por un número de localidad y mueve al jugador a esa localidad \(efectivamente, pone la bandera 38, la bandera que marca la localidad actual del jugador, al valor dado\). Como no hace nada más, debe ir seguida por un DESC para que PAW describa la nueva localidad. Esta entrada entonces lo que hace es que la pantalla del título aparezca, luego espera por el toque de tecla para pasar al juego en la localidad correcta.
+
+Ahora es el momento de ir a la tabla de conexiones y quitar la entrada que pusimos desde la localidad 0 porque ya no se necesita.
+
+Hagamos un test del juego para ver las dos entradas en acción. Si tecleásemos de una sola vez toda la frase:
+
+OESTE, OESTE, ARRIBA, COGER EL BILLETE. ABAJO, ESTE Y ESTE.
+
+tendríamos el juego terminado, con su mensaje de si quieres volver a jugar otra vez. Si no es así, vuelve a chequear las entradas en las tablas de Procesos 1 y 2.
 
