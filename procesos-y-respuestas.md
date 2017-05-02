@@ -434,41 +434,34 @@ Después, insertamos los siguientes mensajes. Podemos usar tinta verde \(en MODO
 
 #### MODO EXTENDIDO + CAPS SHIFT + NUMERO = EL COLOR DE LA TINTA
 
-	Mensaje 6
+```
+Mensaje 6
+El pajarito deja caer el billete para coger el emparedado.
 
-	El pajarito deja caer el billete para coger el emparedado.
+Mensaje 7
+El pajarito se lleva velozmente el billete.
 
-	Mensaje 7
+Mensaje 8
+El pajarito me ignora.
 
-	El pajarito se lleva velozmente el billete.
+Mensaje 9
+Un pajarito anda rondando por aquí.
 
-	Mensaje 8
+Mensaje 10
+El pajarito tiene un billete en su pico.
 
-	El pajarito me ignora.
+Mensaje 11
+Un pequeño pajarito se posa en la hierba.
 
-	Mensaje 9
+Mensaje 12
+El pajarito está ahora en la rama del árbol.
 
-	Un pajarito anda rondando por aquí.
+Mensaje 13
+El pajarito ve al perro y sale pitando.
 
-	Mensaje 10
-
-	El pajarito tiene un billete en su pico.
-
-	Mensaje 11
-
-	Un pequeño pajarito se posa en la hierba.
-
-	Mensaje 12
-
-	El pajarito está ahora en la rama del árbol.
-
-	Mensaje 13
-
-	El pajarito ve al perro y sale pitando.
-
-	Mensaje 14
-
-	El pajarito se va.
+Mensaje 14
+El pajarito se va.
+```
 
 Luego pondremos los mensajes que vaya a usar el perro, pero ahora debemos seleccionar la tabla de Procesos y prepararnos para otras de las virguerías de PAW.
 
