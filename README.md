@@ -16,7 +16,7 @@ EQUIPO DE AVENTURAS A. D., S. A.
 
 ---
 
-Versión en Castellano
+Versión en castellano
 
 © programa: 1986/89 Gilsoft International Ltd.
 
