@@ -465,3 +465,467 @@ El pajarito se va.
 
 Luego pondremos los mensajes que vaya a usar el perro, pero ahora debemos seleccionar la tabla de Procesos y prepararnos para otras de las virguerías de PAW.
 
+SUBPROCESOS
+
+En una aventura de verdad que contenga varios PSI y un montón de acciones, las tablas de Procesos 1 y 2 pronto acabarán llenas, y se hace cada vez más difícil trabajar de esta forma. Entonces viene el momento de dejar que las otras tablas de Procesos comiencen a actuar. Estas pueden ser llamadas desde las tablas de Procesos 1 y 2 o de la tabla de Respuestas, y usadas como una extensión de la tabla desde la cual fueron llamadas.
+
+El llamar a otro proceso hace que PAW guarde en memoria dónde estaba en el momento de ser llamado, y continuará actuando en la misma forma en que lo estaba haciendo. Por ejemplo, si se llamó desde una tabla de Respuestas, PAW tratará de hacer coincidir la Sentencia Lógica actual con cualquier otra entrada. Pero si es llamado desde una tabla de Procesos, sea la 1 o la 2, PAW sencillamente ejecutará cada entrada. \(ESTO ES MUY IMPORTANTE\).
+
+Por otra parte, cuando algo es DONE en el Proceso llamado, PAW volverá a la tabla original y continuará trabajando. Por lo tanto se pueden hacer acciones bastantes complejas mediante el uso de los subprocesos. Los usuarios que sepan algo de programación reconocerán fácilmente que son sencillamente subrutinas.
+
+Cuando PAW está en un subproceso, es posible que sea llamado para actuar en otro subproceso \(¿un sub-subproceso?\), y así se puede continuar con sub-sub-sub hasta un valor de 10. Es decir, las subrutinas pueden ser anidadas hasta un valor de 10. Si se intenta ir más lejos saldrá la frase "Limit Reached", o sea Límite Alcanzado.
+
+En este momento no vamos a usar un subproceso muy complicado, solamente uno simple, y lo haremos para tener en cuenta todas las chorraditas del pájaro.
+
+Usando \[B\] se comienza un nuevo subproceso y PAW automáticamente te localizará el siguiente número libre. De momento deberíamos estar comenzando el proceso 3. Como solamente hay unas pocas entradas en la tabla, usaremos el mismo par de palabras \("\_ PAJARO"\), aún cuando hay que tener en cuenta que al escribir tu juego debes de usar otras palabras que te recuerden lo que hace cada entrada.
+
+La bandera 11, será una bandera de "trabajo", porque contiene un valor que se usa solamente como comparación.
+
+La bandera 12, llevará el número de la localidad actual del pájaro.
+
+La bandera 5, es una bandera especial, porque si tiene un valor diferente de 0, disminuirá 1 cada vez que PAW ejecute una acción, es decir, cada vez que PAW revise la tabla de Proceso 2. Es lo que se llama una bandera autodecreciente.
+
+En este caso usaremos la bandera 5 para contar el número de turnos que han pasado en el juego. Un turno del juego es toda una vuelta del circuito grande en el diagrama 4, y de momento, esto pasa cada vez que el jugador teclea una frase.
+
+El pajarito cambiará de localidad cada tres frases, lo que creará una especie de apariencia de acción independiente de lo que teclea el jugador.
+
+Ahora, vamos a insertar las siguientes entradas \(sin los comentarios, como hicimos antes\). En cada entrada tenemos una explicación de su propósito y también explicaremos cualquier nuevo condacto que se use:
+
+Primero hay que determinar si el pájaro va a salir pitando;., esto pasará cuando la bandera 5 tenga valor 0 \(empezará a contar desde 3\). Entonces, si el billete está en la misma localidad que la del pájaro, será destruido \(puesto que la localidad 252 indica que el pájaro lo tiene\) y si el jugador está en la misma localidad que el pájaro, se le dirá que el pájaro se ha llevado el billete.
+
+Tienes que darte cuenta de que el pájaro sigue con sus ciclos de movimientos aunque el jugador no lo vea. De hecho en el mundo de PAW un árbol se cae aunque no haya nadie para verlo. Así de real es.
+
+	\_ PAJARO	COPYOF	4	11	;Copia la localidad del objeto 4 \(el billete\)
+
+						a la bandera 11.
+
+	SAME		11	12	;y mira si está en la misma localidad que el pájaro.
+
+	ZERO		5		;¿Va a volar el pájaro?
+
+	DESTROY		4		;E1 pájaro coge el billete.
+
+	SAME		12	38	;¿Está el pájaro en la misma localidad que el jugador?
+
+	MESSAGE		7		;Díselo al jugador.
+
+Fíjate, no hay acción DONE porque queremos que PAW haga cada entrada, una detrás de otra, siempre que se cumplan los requisitos de las condiciones de ellas. La tabla anterior te muestra cómo se pueden mezclar condiciones y acciones para crear nuevas condiciones.
+
+
+
+COPYOF
+
+Es una acción que debe ser seguida por el número de un objeto y una bandera. Lo que hace es que copia la localidad actual del objeto que se especifique, en la bandera especificada. La usamos en esta situación para ver si el billete está en la misma localidad que el pájaro.
+
+
+
+SAME
+
+Es una condición que compara el contenido de dos banderas, y que es favorable o positiva si ambas son del mismo valor.
+
+
+
+DESTROY
+
+Es una acción que pone un objeto especificado en la localidad 252 \(localidad no creada\).
+
+Ahora vamos a crear dos posibles movimientos para el pájaro. Si el pájaro está en el pabellón de música y la bandera 5 ha llegado a 0, entonces hay que mover el pájaro, setear la bandera 5 a tres otra vez y decirle al jugador que el pájaro se ha ido, si está en la misma localidad. Y lo mismo si el pájaro está en la rama.
+
+	\_ PAJARO 	EQ	12	18	;¿Está el pájaro en la rama?
+
+			ZERO	5		;¿Es tiempo de volar?
+
+			LET	12	5	;Mover el pájaro al pabellón
+
+			LET	5	3	;Tres frases antes de moverse.
+
+			AT	8		;¿Está el jugador también aquí?
+
+			MESSAGE 14		;Dile que el pájaro ha volado.
+
+
+
+	\_ PAJARO	EQ	12	5	;EL pájaro está en el pabellón.
+
+			ZERO	5		;¿Es tiempo de volar?
+
+			LET	12	8	;Mover el pájaro a la rama
+
+			LET 	5	3	;Deja 3 frases antes de moverlo
+
+			AT	5		;¿Está el jugador también aquí?
+
+			MESSAGE	14		;Dile que el pájaro ha volado.
+
+
+
+EQ
+
+Es una condición que debe ser seguida por un número de bandera y otro valor, y que será positiva si la bandera contiene ese valor. En este caso \(EQ 12 8\) está comprobando si el pájaro está en una localidad específica.
+
+LET
+
+Es una acción que también es seguida por una bandera y un valor. Y pone ese valor en la bandera. Ya henos tenido en cuenta el vuelo del pájaro. Ahora vamos a poner sus llegadas, y si llega a una localidad en la que esté el jugador, hay que decírselo.
+
+	\_ PAJARO	EQ	5	3	;¿Acaba de volar el pájaro?
+
+			SAME	12	38	;¿Está en la localidad del jugador?
+
+			AT	5		;¿o en el pabellón de música?
+
+			MESSAGE	11		;Ha aterrizado en la hierba.
+
+
+
+	\_ PAJARO	EQ	5	3	;¿Acaba de volar el pájaro?
+
+			SAME	12		;¿Está en la localidad del jugador?
+
+			AT	8		;¿o está en la rama?
+
+			MESSAGE	12		;Aterrizó en la rama.
+
+
+
+Ahora, si el pájaro tiene el billete en su pico debemos decírselo al jugador.
+
+
+
+	\_ PAJARO	EQ	5	5	
+
+			SAME	12	28	
+
+			ISAT	4	252	;¿E1 billete no ha sido creado?
+
+			MESSAGE	10		;Tiene el billete en su pico.
+
+
+
+
+
+ISAT
+
+Es una condición seguida de un objeto y el número de una localidad y es positiva si el objeto está en la localidad especificada. Finalmente, si el emparedado está en la misma localidad que el pájaro, el pájaro dejará el billete para coger el emparedado. Esta entrada no tiene nada que ver con la bandera 5, así que será buscada cada vez que PAW vaya al Proceso 2. Por lo tanto, si el jugador deja caer el emparedado después de que el pájaro haya llegado, la secuencia correcta aún se llevará a cabo.
+
+	\_ PAJARO	COPYOF	2	11	; Emparedado.
+
+			SAME	11	12	;¿En la misma localidad que el pájaro?
+
+			ISAT	4	252	; ¿Lleva el billete en el pico?
+
+			COPYFO	12	4	;Empieza a caer el billete.
+
+			SAME	12	38	;¿Está el jugador también por ahí?
+
+			MESSAGE	6		;Díselo
+
+
+
+COPYFO
+
+Es una acción que copia el contenido de una bandera específica a la localidad actual del objeto específico. También hay acciones COPYFF y COPYOO que son fáciles de comprender. Así completamos las rutinas de control del pajarito. Pero necesitamos una entrada en el Proceso 2 para llamar a todas esas rutinas en cada ciclo, así que busquemos en la tabla 2 y pongamos la entrada que llama a todo el subproceso, es decir, la entrada "madre".
+
+	\_PAJARO	PROCESS 	3
+
+lo que hará que PAW ejecute nuestros controles de pájaro cada vez que pase por ahí. Ahora debemos asegurarnos de que el pájaro empieza en la localidad correcta y que el jugador sabe que el pájaro esta ahí cuando la localidad se describe \(o empezará a ver mensajes acerca de un pájaro dando la paliza sin haber tenido ninguna descripción de que existe tal pájaro\). Así que seleccionemos el Proceso 1 \(que ya sabemos que se llama después de cada descripción de localidad\) y vamos a corregir la entrada existente con \* \* poniéndole un \[LET 12 8\], lo cual hará que el pájaro esté en la rama al principio del juego. La entrada modificada debe ser:
+
+	\* \*	AT	0
+
+		ANYKEY
+
+		LET	12	8	;E1 pájaro está en la rama \(localidad 8\)
+
+		GOTO	2		
+
+		DESC
+
+
+
+Y también hay que poner la siguiente entrada en la tabla de Procesos, para que le diga al jugador que hay un pajarito, y que tiene el billete.
+
+	\_ PAJARO	SAME	12	38
+
+			MESSAGE	9
+
+			ISAT	4	252
+
+			MESSAGE	10
+
+
+
+Por último seleccionaremos la tabla de Respuestas e insertaremos la entrada:
+
+	COGER BILLETE	SAME	12	38	;¿Está el pájaro en la misma localidad?
+
+			ISAT	4	252	;¿Con el billete en el pico?
+
+			CLEAR	5		; Esto lo fuerza a volar
+
+			NOTDONE			;"No puedo hacer eso".
+
+
+
+Esta entrada se disparará antes de la entrada GET \_ y previene la respuesta "No hay uno de esos aquí" si el pájaro está presente con el billete.
+
+
+
+CLEAR
+
+Es una acción que va seguida por un número de bandera, y que pone esa bandera a 0. En este caso hará que el pájaro salga pitando, simulando su miedo a una gran mano que desciende sobre él para coger su preciada posesión.
+
+NOTDONE
+
+Es una acción similar a DONE, pero que engaña a PAW pensando que no has hecho nada y por lo tanto hace imprimir el mensaje "No puedo hacer eso".
+
+Y ahora, vamos al momento de la verdad. Hay que probar el juego para ver si el pájaro vuela del pabellón de música a la rama. Juega un rato para ver si el pájaro continúa con su existencia vagabunda. Después trata de dejar caer el emparedado en la misma localidad. Date cuenta, de que si no coges el billete antes de que el pájaro se pire, el pájaro lo cogerá otra vez.
+
+Y menos mal que acabamos con el bendito pájaro. Es complicado, pero te enseñará un montón sobre el PAW.
+
+EL PERRO
+
+Este perro lo ponemos para complicar el juego un poco más. Simplemente seguirá al jugador donde quiera que vaya y espantará al pajarito. Comoo no se espera que el perro se suba al árbol, debemos impedir que el jugador pueda tentar al pájaro con el emparedado desde la rama. Para hacer eso dispondremos que cualquier objeto que se suelte desde la rama del árbol caiga hasta el suelo. El jugador se puede desembarazar del maldito perro poniéndole la cadena y amarrándola al banco. Además, el jugador puede "hablar" al perro, lo cuál le dará otro medio de desembarazarse de él diciéndole que se SIENTE o que se QUEDE.
+
+Antes de examinar las entradas en las tablas de Procesos y Respuestas, necesitamos tener el control del perro por medio de las siguientes palabras en el vocabulario y mensajes en la tabla de Mensajes.
+
+	Verbos	Nombre
+
+	ATAR	34
+
+	DESATAR	35
+
+	SENTAR	36
+
+	QUEDAR	36
+
+	VEN	37
+
+	AQUI	37
+
+Los números te demuestran que sentarse y quedarse son lo mismo, y que también usamos un Nombre y un Verbo con el mismo número.
+
+
+
+	Mensaje 15
+
+	El \_ cae al suelo al pie del árbol.
+
+
+
+No se debe cambiar el color de este mensaje, y el que pongamos una raya baja en él tiene un propósito especial, del cuál ya hablaremos más adelante.
+
+Los demás mensajes que hablen del perro pueden ser puestos de cualquier otro color, por ejemplo magenta \(MODO EXTENDIDO, CAPS SHIPT + 3\) no olvidando nunca volver al blanco al final de cada uno de ellos. El color del mensaje le permite al jugador saber exactamente a quién se refiere cada mensaje.
+
+	Mensaje 16
+
+	El perro me mira con amor.
+
+	Mensaje 17 El perro está aquí.
+
+	Mensaje 18
+
+	El perro me sigue moviendo la cola.
+
+	Mensaje 19
+
+	El perro va arrastrando la correa.
+
+	Mensaje 20
+
+	El perro está atado al banco con una correa.
+
+	Mensaje 21
+
+	Confiadamente, el perro me deja ponerle la correa alrededor del cuello.
+
+	Mensaje 22
+
+	He amarrado el perro al banco.
+
+	Mensaje 23
+
+	¿A quién se lo digo?
+
+	Mensaje 24
+
+	El perro se sienta tranquilo.
+
+	Mensaje 25
+
+	He desatado el perro del banco.
+
+
+
+No hay verdadera necesidad de hacer la rutina para el perro en una tabla de Procesos separados, porque solamente hay una entrada, pero lo haremos por si quieres ampliar el juego más tarde.
+
+La bandera 13 contendrá la localidad actual del perro.
+
+La bandera 14 contendrá varios indicadores:
+
+	0	si el perro está libre para andar por ahí.
+
+	1	si el perro tiene la correa alrededor del cuello.
+
+	2	si el perro está atado al banco.
+
+	252	si el perro está sentado muy tranquilo.
+
+Desde la tabla de Procesos, con \[B\] empezamos una nueva tabla de Procesos \(debe ser la tabla número 4\) y ponemos una sola entrada:
+
+	\_ PERRO	NOTSAME	13	38	;¿No está el perro donde está el jugador?
+
+		LT	14	2	;¿Todavía se puede mover?
+
+		NOTAT	8		;¿E1 jugador no está arriba del árbol?
+
+		COPYFF	38	13	; Mueve el perro a la localidad del jugador.
+
+		MESSAGE	18		;Y dile que lo atosigue.
+
+
+
+Suponemos que eres capaz de entender qué es NOTSAME, NOTAT y COPYFF, en caso negativo, en la guía técnica te explicaremos para qué sirve cada una.
+
+
+
+LT
+
+Es una condición que es positiva o favorable si la bandera especificada contiene un valor MENOR QUE el valor especificado. En este caso \[LT 14 2\] solamente será positivo o acertado si la bandera 14 tiene un valor menor de 2.
+
+Ahora vamos a la tabla de Procesos 2:
+
+	\_ PERRO	PROCESS	4
+
+es decir, que estás usando la tabla de Procesos 2 para enviar a PAW a la tabla de Procesos 4. La entrada “\_ Perro", \(si usamos \[P\] para mirar a la tabla\), debe estar antes de la entrada del pajarito \(si no es así, es que has puesto las palabras del vocabulario de una forma diferente de la que dijimos\). Es para asegurar que el perro se mueva a la nueva localidad del jugador antes de que el pájaro sea comprobado.
+
+Similarmente a como hicimos con el pájaro, se requieren entradas en la tabla de Procesos 1, para informarle al jugador que el perro anda por ahí rondando:
+
+	\_ PERRO	SAME	13	38	;¿El perro está en la misma localidad?
+
+		MESSAGE	17		;Díselo al jugador.
+
+		EQ	14	1	;¿con la correa?
+
+		MESSAGE	19		;sí, díselo al jugador.
+
+
+
+	\_ PERRO	SAME	13	38	
+
+		EQ	14	2	;¿Está el perro amarrado al banco?
+
+		MESSAGE	20		
+
+
+
+	\_ PERRO	SAME	13	38	
+
+		GT	14	2	;255 es mayor que 2 así que
+
+		MESSAGE	24		;Dile al jugador que el perro sentado.
+
+
+
+Ya que estamos en la tabla de Procesos 1, modifiquemos la entrada \* \* para que también tenga \[LET 13 2\] \(antes del GOTO\), esto hace que el perro empiece en la parada de autobús. Ahora, para que el perro asuste al pajarito, necesitamos una entrada extra en la tabla de Procesos 3. Pero debe ir delante de la entrada que decide que el pájaro deje caer el billete y después de la entrada que hace que el pájaro vuele. Así nos aseguramos que el pájaro volará con el billete si lo tiene y lo deja si no lo tiene.
+
+Por lo tanto, necesitamos insertar otra entrada antes de la sexta. Usaremos \[I \_ PAJARO 6\] para hacerlo.
+
+
+
+	\_ PAJARO	SAME	12	13	;EL pájaro y el perro estén en la misma localidad.
+
+			LET	12	8	; Sólo en el pabellón de música
+
+			LET	5		;Muévelo a la rama, espera 3 frases.
+
+			AT 	5		;¿Está el jugador en el Pabellón de Música?
+
+			MESSAGE	13		;Dile que el pájaro se ha ido.
+
+
+
+El número de cualquier inserción o corrección tiene un valor máximo de 255. O sea, que no debes de insertar más de 256 entradas con el mismo tipo de palabra \(lo cual sería de todos modos bastante poco manejable\), si quieres retener la habilidad de seguir insertando en cualquier parte de la lista. El último cambio en la tabla de Procesos es insertar un subproceso que luego llamaremos desde la tabla de Respuestas para que se haga cargo de hablar al perro. El mecanismo es muy simple. Si el jugador incluye una frase "\(" "\)" en su sentencia de INPUT, entonces el parser guardará memoria del lugar donde esté y seguirá descifrando la frase entre comillas. Hay una acción llamada PARSE que instruye a PAW para que decodifique la cadena de palabras que el jugador haya tecleado, haciendo entonces la Sentencia Lógica. Lo lógico es hacer esto en un subproceso porque PAW tratará de buscar una similitud entre la nueva Sentencia Lógica y el resto de la frase.
+
+Entonces comencemos una nueva tabla de Proceso \(que debe ser la 5\) e insertemos las siguientes entradas:
+
+	\* \*	PARSE			;Convierte una cadena a SL.
+
+		MESSAGE	16		;No es una frase válida así que...
+
+		DONE			;El perro no te entiende.
+
+
+
+	SIENTATE \_	ZERO	14	;¿El perro no está amarrado?
+
+			SET	14	;Ahora está sentado quieto.
+
+			MESSAGE	24	;Díselo al jugador \(si está en el mismo lugar que el perro\)
+
+			DONE
+
+
+
+	VEN \_	EQ	14	255	;El perro debe de estar sentado
+
+		CLEAR	14		;Ahora está normal.
+
+		MESSAGE	13		;E1 perro te sigue.
+
+		DONE
+
+
+
+	\_ AQUI	EQ	14	255	
+
+		CLEAR	14		
+
+		MESSAGE	13		
+
+		DONE			
+
+
+
+	\_ \_	MESSAGE	16	;Cualquier otra cosa.
+
+La última entrada se usa para obviar el vocabulario tan limitado que entiende el perro, haciéndole que para cualquier otra frase mueva la cola, por eso se pone la última con \_ \_.
+
+Recordar que PAW va buscando en toda la tabla de Procesos, y si no encuentra una igual a la que busca caerá en esta última entrada de \_ \_.
+
+PARSE
+
+PARSE le permite a PAW continuar buscando condactos si no encuentra una Sentencia válida. Hay que tener cuidado aquí, puesto que la actual Sentencia Lógica puede estar un poco enrevesada \(el parser intentará sacar algún significado de todos modos\) así que normalmente se debe insertar algún mensaje como "Parece no entender" o algo similar, y después un DONE para volver a la acción anterior.
+
+Si se forma una Sentencia válida PAW empezará a buscar las siguientes entradas por una similar, como hacía en la tabla de Respuestas. PARSE debe ser solamente usada en un subproceso que sea llamado desde la tabla de Respuestas, puesto que no tiene ningún significado en otra tabla. Date cuenta de cómo las entradas VEN y AQUI se hacen cargo de una cantidad de frases que el jugador puede usar después de que el perro esté sentado, porque ambas tienen, una delante y otra detrás, la palabra comodín, o sea, la raya.
+
+Y por último, la entrada "\_ \_" coge cualquier sentencia que se haya metido en la cadena y para la cual el perro no tenga una respuesta especifica.
+
+Selecciona la tabla de Respuestas para insertar algunas entradas extra que controlen el habla y el dejar caer objetos del árbol.
+
+La primera de todas es la entrada que hace que los objetos que se dejen en el -árbol caigan al suelo. Esto debe ir entre la entrada que se hace cargo de poner objetos dentro de la bolsa y la entrada normal de "DEJAR \_". Entonces \[I PONER \_ l\] nos situará en esa posición. La entrada es:
+
+	PONER \_	AT	8		;Que el jugador esté en la rama.
+
+		WHATO			;Ya hablaremos de ello.
+
+		LT	51	255	;¿Es un objeto válido?
+
+		EQ	54	254	;¿Es un objeto que llevas encima?
+
+		MESSAGE	15		;Avisa que está al pie del árbol
+
+		PUTO	7		;La pone ahí.
+
+		DONE
+
+
+
+Esto es un ejemplo de cómo se crea una acción automática, viene a ser lo mismo que un AUTOG, etc.
+
+
+
+WHATO
+
+Es una acción que mira el primer Nombre de la Sentencia Lógica actual en la tabla Objeto-Palabra, y la convierte en el número de un objeto. Este número se pone entonces en la bandera 51. La bandera 51 siempre contiene el número del último objeto que se ha usado, o el último del que PAW tiene referencia, y siempre que esté seteada, las banderas asociadas \(números 54 y 57\) también se setean.
+
+La bandera 54 lleva la localización actual del objeto. Es conveniente que mires el manual técnico para las banderas 51, 54 y 57.
+
