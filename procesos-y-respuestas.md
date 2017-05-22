@@ -737,7 +737,7 @@ _ PERRO    SAME    13    38    ;¿El perro está en la misma localidad?
 _ PERRO    SAME    13    38    
            EQ      14    2     ;¿Está el perro amarrado al banco?
            MESSAGE 20        
-           
+
 _ PERRO    SAME    13    38    
            GT      14    2     ;255 es mayor que 2 así que
            MESSAGE 24          ;Dile al jugador que el perro sentado.
@@ -815,4 +815,86 @@ Esto es un ejemplo de cómo se crea una acción automática, viene a ser lo mism
 Es una acción que mira el primer Nombre de la Sentencia Lógica actual en la tabla Objeto-Palabra, y la convierte en el número de un objeto. Este número se pone entonces en la bandera 51. La bandera 51 siempre contiene el número del último objeto que se ha usado, o el último del que PAW tiene referencia, y siempre que esté seteada, las banderas asociadas \(números 54 y 57\) también se setean.
 
 La bandera 54 lleva la localización actual del objeto. Es conveniente que mires el manual técnico para las banderas 51, 54 y 57.
+
+PUTO
+
+Es una acción que cambia de localidad al objeto últimamente tratado, hacia la localidad que se especifique. O sea, es una acción que cambia el objeto de que se trate hacia la nueva localidad especificada.
+
+El Mensaje 15 contiene una raya. Siempre que PAW encuentra una raya en el texto \(sea mensaje o sea localidad\) la reemplaza con el objeto actual. Es decir, el mensaje se cambia para tener en cuenta el último objeto que se esté usando.
+
+Ahora una entrada relativamente simple para que se haga cargo de: PONER LA CORREA AL PERRO:
+
+
+
+	PONER CORREA	PREP ENCIMA		;Para estar seguros si el jugador teclea eso
+
+			NOUN2 PERRO
+
+			CARRIED	5		;Que el jugador tenga la correa
+
+			SAME	13	38	;Que esté en la misma localidad que el perro
+
+			LET	14	1	;Ahora el perro tiene la correa
+
+			DESTROY	5		;por lo tanto, el jugador no la puede tener
+
+			MESSAGE	21		;Se le dice.
+
+			DONE
+
+
+
+En las entradas que siguen, introduciremos un nuevo concepto. Se trata de la modificación de la Sentencia Lógica actual.
+
+Nosotros queremos que el juego entienda ambos, ATAR EL PERRO AL BANCO y ATAR LA CORREA AL BANCO puesto que son la misma cosa. Pero tenemos que correa y perro tienen diferente valor como palabras, así que la entrada de ATAR PERRO irá primero en la tabla \(puesto que su valor es más bajo que correa\). Por lo tanto, hay que convertir el Nombre en CORREA \(55\) y permitir que PAW lleve a cabo una entrada que equivalga a ATAR CORREA. Un sistema similar hay que utilizar para DESATAR.
+
+Esto es bastante importante, y lo utilizarás en tus juegos con bastante frecuencia. Hay que poner las entradas:
+
+	ATAR PERRO	LET	34	55	;La bandera 34 es el Nombre de la SL
+
+	ATAR CORREA	PREP A			
+
+			NOUN2 BANCO		
+
+			AT	4		;Donde está el banco
+
+			SAME	13	38	;El perro está aquí
+
+			EQ	14	1	;Tiene la correa puesta
+
+			PLUS	14	1	;Ahora atado al banco
+
+			MESSAGE	22		;Se informa al jugador sobre ello
+
+			DONE
+
+
+
+	ATAR \_		NOTDONE			;Para asegurarse de que no pueda desatar otra.
+
+
+
+	DESATAR PERRO	LET	34	55	;La bandera 34 es el Nombre de la SL
+
+
+
+	DESATAR CORREA	AT	4		;Donde está el banco
+
+			EQ	14	2	;Si ya está el perro atado
+
+			CLEAR	14	;La bandera índica que está libre
+
+			MESSAGE	25	;Díselo al jugador
+
+			CREATE	5	;Hay que volver a crear la correa
+
+			GET 5	;Dársela al jugador, cogerla
+
+			DONE
+
+
+
+	DESATAR \_	NOTDONE	;Es para asegurarse de que no pueda Desatar otra.
+
+
 
