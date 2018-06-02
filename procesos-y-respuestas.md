@@ -879,17 +879,17 @@ Es una acción que si está seguida por un número de objeto, intenta coger el o
 Finalmente pondremos las entradas que permiten hablar al perro. Hemos también incluido algunas entradas necesarias para que se te permita hablar al pájaro, pero que él te ignore.
 
 ```
-DECIR PERRO	SAME 13 38 	;Que esté aquí 
-PROCESS 	5 		;Se le manda a esa tabla para que
-				haga el trabajo.
-		DONE
+DECIR PERRO   SAME    13 38  ;Que esté aquí 
+              PROCESS 5      ;Se le manda a esa tabla para que
+                             ;haga el trabajo.
+              DONE
 
-DECIR PAJARO 	SAME 12 38
-		MESSAGE	8
-		DONE
+DECIR PAJARO  SAME    12 38
+              MESSAGE 8
+              DONE
 
-DECIR _ 	MESSAGE 23	; Que pregunte: ¿Quién?
-		DONE
+DECIR _       MESSAGE 23     ; Que pregunte: ¿Quién?
+              DONE
 ```
 
 No penemos nada para la preposición A, esto permite al jugador recortar su orden si así lo quiere. En líneas generales no se debe hacer una comprobación para una Sentencia Lógica extendida, a menos que sea necesario para diferenciar entre dos frases similares.
@@ -917,27 +917,27 @@ Antes de que continuemos con los gráficos, aquí hay unos cuantos puntos que co
 5. Nada se ha hecho todavía con la antorcha. Las siguientes entradas te permiten encenderla y apagarla \(pero debes tener la palabra encender y apagar en el Vocabulario\):
 
 ```
-ENCIENDE ANTORCHA	CARRIED
-			SWAP 7 0
-			OK
+ENCIENDE ANTORCHA    CARRIED
+                     SWAP    7 0
+                     OK
 
-APAGA ANTORCHA		CARRIED
-			SWAP 0 7
-			OK
+APAGA ANTORCHA       CARRIED
+                     SWAP    0 7
+                     OK
 ```
 
 Debes mirar todos los condaccs que no hemos puesto aquí en la guía técnica, y leer con atención el capítulo sobre claridad y oscuridad. A lo mejor se podría añadir a esta demostración un sótano debajo del pabellón de música. El movimiento debería ser puesto también en la tabla de Respuestas con una entrada del tipo de: \(suponiendo que 9 sea la nueva localidad\).
 
 ```
-BAJAR _	AT	5	;¿Está el jugador en el Pabellón?
-	SET	0	;Si la bandera 0 = 255 = Es de noche
-	GOTO	9	;Nueva localidad
-	DESC
+BAJAR _    AT     5    ;¿Está el jugador en el Pabellón?
+           SET    0    ;Si la bandera 0 = 255 = Es de noche
+           GOTO   9    ;Nueva localidad
+           DESC
 ```
 
 No debes olvidarte de poner una entrada para SUBIR que limpie la bandera otra vez a 0.
 
- 6. ¿Qué pasa si el jugador intenta subir al árbol? y ¿cómo sería otra manera de poner esto? Como clave te diremos que solamente hay una cosa que se puede subir en esa localidad.
+1. ¿Qué pasa si el jugador intenta subir al árbol? y ¿cómo sería otra manera de poner esto? Como clave te diremos que solamente hay una cosa que se puede subir en esa localidad.
 
 **EL USO DE LOS OVERLAYS**
 
