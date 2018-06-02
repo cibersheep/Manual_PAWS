@@ -868,5 +868,111 @@ DESATAR CORREA AT      4        ;Donde está el banco
 DESATAR _      NOTDONE          ;Es para asegurarse de que no pueda Desatar otra.
 ```
 
+**CREATE**
 
+Es una acción que debe ser seguida por un número de objeto. Ello causa que el objeto aparezca en la posición donde está el jugador.
+
+**GET**
+
+Es una acción que si está seguida por un número de objeto, intenta coger el objeto especificado. Usamos estas acciones en vez de poner el objeto simplemente en 254, porque puede haber problemas debido al peso o al demasiado número de objetos que se lleven, y entonces estos problemas deben producir información.
+
+Finalmente pondremos las entradas que permiten hablar al perro. Hemos también incluido algunas entradas necesarias para que se te permita hablar al pájaro, pero que él te ignore.
+
+```
+DECIR PERRO	SAME 13 38 	;Que esté aquí 
+PROCESS 	5 		;Se le manda a esa tabla para que
+				haga el trabajo.
+		DONE
+
+DECIR PAJARO 	SAME 12 38
+		MESSAGE	8
+		DONE
+
+DECIR _ 	MESSAGE 23	; Que pregunte: ¿Quién?
+		DONE
+```
+
+No penemos nada para la preposición A, esto permite al jugador recortar su orden si así lo quiere. En líneas generales no se debe hacer una comprobación para una Sentencia Lógica extendida, a menos que sea necesario para diferenciar entre dos frases similares.
+
+Como prueba final, ahora debes jugar la aventura intentando atar al perro, hablarle y todas esas chorradas. Por ejemplo, cuando estemos en el camino cerca del banco del parque, con la correa y el perro, intenta PONER LA CORREA AL PERRO Y ATARLO AL BANCO.
+
+Luego para desatarlo digamos: DESATA PERRO.
+
+Si estamos arriba del árbol con la bolsa, digamos PON TODO EN LA BOLSA Y SUELTALA. BAJA Y MIRA DENTRO DE LA BOLSA.
+
+Para hacer que el perro se siente teclea: DECIR AL PERRO "SIENTATE".
+
+Para hacerle volver: DECIR AL PERRO "VEN AQUI".
+
+¿Funciona?... _Malegro._
+
+**MEJORAS POR TI MISMO**
+
+Antes de que continuemos con los gráficos, aquí hay unos cuantos puntos que convendría arreglar en el juego de demostración, para que sirvan como práctica en el uso del sistema.
+
+1. EXAMINA debe responder a todos los objetos aunque sea con una respuesta general como "No veo nada especial en el \_ ".
+2. El pájaro debería de verdad volar, escapándose de ti si intentas coger el emparedado mientras está presente. Por ejemplo, se supone que estaría picoteando el emparedado y cualquier pájaro se las piraría.
+3. «DESATA \_» y «ATA \_» deben tener un mensaje más o menos parecido a «¿Atar qué? y ¿A qué?», porque la forma en que lo pusimos con NOTDONE era una salida bastante fácil.
+4. Si el jugador intenta teclear PONER un objeto DENTRO DE LA BOLSA y la bolsa no está presente, tal como lo tenemos de momento lo único que pasará es que dejará caer el objeto, ¿por qué? Arréglalo.
+5. Nada se ha hecho todavía con la antorcha. Las siguientes entradas te permiten encenderla y apagarla \(pero debes tener la palabra encender y apagar en el Vocabulario\):
+
+```
+ENCIENDE ANTORCHA	CARRIED
+			SWAP 7 0
+			OK
+
+APAGA ANTORCHA		CARRIED
+			SWAP 0 7
+			OK
+```
+
+Debes mirar todos los condaccs que no hemos puesto aquí en la guía técnica, y leer con atención el capítulo sobre claridad y oscuridad. A lo mejor se podría añadir a esta demostración un sótano debajo del pabellón de música. El movimiento debería ser puesto también en la tabla de Respuestas con una entrada del tipo de: \(suponiendo que 9 sea la nueva localidad\).
+
+```
+BAJAR _	AT	5	;¿Está el jugador en el Pabellón?
+	SET	0	;Si la bandera 0 = 255 = Es de noche
+	GOTO	9	;Nueva localidad
+	DESC
+```
+
+No debes olvidarte de poner una entrada para SUBIR que limpie la bandera otra vez a 0.
+
+ 6. ¿Qué pasa si el jugador intenta subir al árbol? y ¿cómo sería otra manera de poner esto? Como clave te diremos que solamente hay una cosa que se puede subir en esa localidad.
+
+**EL USO DE LOS OVERLAYS**
+
+El usuario de un 128K probablemente no necesita usar paginación todavía, pero puede encontrar beneficioso también este capítulo.
+
+Ya explicamos antes el concepto de las paginaciones. Para poder pasar los gráficos y la compresión del texto, por ejemplo, los usuarios de 48K tendrán que cargar un overlay o página aparte.
+
+PAW hará casi todo el trabajo para ti. Si seleccionas la opción de menú que necesitas, se te pedirá que confirmes si quieres cargar o no un overlay. Pulsando cualquier tecla que no sea la S o la Y \(de yes\) te mandará al menú principal. Si continúas, PAW imprimirá el nombre del overlay que está buscando en la pantalla.
+
+Los cinco overlays se encuentran al final del programa principal, que es donde la cinta quedará situada después de cargar el PAW. Si tienes un contador de revoluciones, es importante que lo pongas a cero en este punto, hagas una lectura de dónde comienza cada overlay y así puedes ir directamente a cada uno de ellos.
+
+Los cinco overlays están en el orden que mostramos más abajo, y también describiremos las opciones que contiene cada uno:
+
+| PAWOVR | 1 | Lleva el Intérprete, el probador del juego, Grabar y Cargar la aventura ya terminada. |
+| :--- | :---: | :--- |
+| PAWOVR | 4 | Lleva las tablas de Procesos y Respuestas, el Vocabulario, las Conexiones, y Palabras. |
+| PAWOVR | 5 | Lleva los Mensajes, Localidades, Peso de Objetos, Objetos-Inicialmente-En y Colores de Fondo. |
+| PAWOVR | 2 | Lleva un Compresor. |
+| PAWOVR | 3 | Lleva un Editor de Caracteres y el Editor Gráfico. |
+
+Es de notar que el Grabar, Verificar y Cargar una base de datas, junto con la Memoria Libre, están siempre a tú disposición, puesto que son parte del menú principal.
+
+Una vez que una base de datos se ha cargado, se te presentará un menú como siempre. Si hay algún error puedes volver al menú principal, volver a seleccionar la opción y probar de nuevo.
+
+Es importante que tengas en cuenta que cualquier overlay cargado previamente será borrado si ocurre un Error de Carga, asi que a menos que tengas suficiente memoria para mantener los overlays principales, no podrás hacer nada, excepto cargar un nuevo overlay o hacer un Save \(Grabar\) o un Load \(Cargar\) de la base de datos. Lo cual siempre está a tú disposición.
+
+Si no tienes un contador de revoluciones o quieres hacer las cosas más sencillas se puede pasar cada una de las bases de datos a una cinta aparte. Son sencillamente bases de datos de tipo CODE.
+
+**COMPRESION DE TEXTO**
+
+La opción K del menú principal \(los usuarios de 48K tendrán que cargar un overlay en este punto\) preguntará si quieres comprimir la base de datos, cualquier tecla que teclees aparte de la S de "sí" te mandará de vuelta al menú principal.
+
+El compresor de texto reducirá la cantidad de memoria que se necesita para el texto de tu juego agrupando las letras más comunes en "tokens". Esto puede tomar desde un minuto hasta una hora dependiendo del tamaño de tu juego. En este juego de demostración que estamos haciendo llevará más o menos un minuto y salvará unos 900 bytes.
+
+La única diferencia que encontrarás es que, cuando estás editando un texto que ya existe, el cursor pegará saltos de dos, tres, y a veces cuatro y cinco caracteres de una sola vez. Lo mismo pasará al borrar. Si se hace alguna corrección hay que teclear todas las letras separadas, puesto que ya serán comprimidas la próxima vez que uses el compresor. Es de notar que el compresor usa los tokens normales del Spectrum, lo que producirá agrupaciones de letras, pero no de las palabras claves después de que uses el compresor.
+
+Muy importante es que no uses los tokens, o sea, las palabras clave, si luego vas a comprimir la base de datos, \(es decir, no pongas tokens dentro de tu texto si después vas a comprimir\). Y para saber lo que son tokens mira el manual de tu ordenador.
 
