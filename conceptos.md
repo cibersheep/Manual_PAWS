@@ -20,7 +20,7 @@ El 128K usa un sistema llamado paginación para obtener su memoria extra; el [di
 
 ###### DIAGRAMA 1![](/assets/diagrama01.png) {#diagrama01}
 
-**Nota:** las páginas 2 y 5 son el área de memoria donde se localiza el PAW y por ello no están disponibles. La zona de memoria marcada como secciones de datos será usada por PAW si es necesario \(ver [sección anterior](#paginación-de-memoria)\).
+**Nota:** las páginas 2 y 5 son el área de memoria donde se localiza el PAW y por ello no están disponibles. La zona de memoria marcada como _Secciones de datos_ (Check) será usada por PAW si es necesario \(ver [sección anterior](#paginación-de-memoria)\).
 
 ### Base de datos \(BD\)
 
@@ -28,33 +28,33 @@ PAW guarda el juego en una base de datos \(una colección de tablas e informaci�
 
 Esta base de datos va poco a poco usando el área de memoria que se muestra como libre en el [diagrama 1](#diagrama01).
 
-PAW también puede hacer uso de otras páginas, pero en un 48K esas páginas extra no están disponibles. Lo que significa que si se usa un 128K para escribir la aventura y se quiere que ésta corra tanto en 128 como en 48K, no se debe usar otra página sino la principal \(la 0\).
+PAW también puede hacer uso de otras páginas, pero en un 48K esas páginas adicionales no están disponibles. Lo que significa que si se usa un 128K para escribir la aventura y se quiere que ésta corra tanto en 128 como en 48K, no se deben usar otras páginas, solo la principal \(la 0\).
 
-### Parser
+### _Parser_
 
 > _To Parse:_ clasificar una palabra o analizar una frase en sus términos gramaticales.
 
-PAW convierte lo tecleado por el jugador en series de sentencias lógicas \(SLJ\) para las cuales ya hay una respuesta definida. Esto se hace extrayendo frases de la cadena de input, de una en una y dejando que el intérprete las descifre. Las frases pueden ir separadas por cualquier signo de puntuación y por las conjunciones y, entonces, o luego \(o la que se haya definido\). Cuando ya no hay mas frases en la actual cadena de input, se pide otra al jugador. Una frase debe consistir al menos en un verbo \(indica acción\); opcionalmente dos nombres \(objetos o personajes\); posiblemente asociados a adjetivos \(que los describen\); de adverbios \(que modifican al verbo\); de una preposición \(que muestra la relación de un nombre con otra palabra\); y también puede contener una "cadena entre comillas para hablar con otros personajes".
+PAW convierte lo tecleado por el jugador en series de sentencias lógicas \(SLJ\) para las cuales ya hay una respuesta definida. Esto se hace extrayendo frases de la cadena de entrada (input), de una en una y dejando que el intérprete las interprete. Las frases pueden ir separadas por cualquier signo de puntuación y por las conjunciones _y, entonces,_ o _luego_ \(o las que se hayan definido\). Cuando ya no hay más frases en la actual cadena de entrada, se pide otra al jugador. Una frase debe consistir al menos en un verbo \(que indica una acción\); opcionalmente dos nombres \(objetos o personajes\); posiblemente asociados a adjetivos \(que los describen\); de adverbios \(que modifican al verbo\); de una preposición \(que muestra la relación de un nombre con otra palabra\); y también puede contener una «cadena entre comillas para hablar con otros personajes».
 
 ### Menú
 
-Del menú principal, mostrado al pulsar cualquier tecla desde la página de titulo, se puede acceder a cualquier opción del PAW con sólo teclear una sola letra \(en MAYUSCULAS\) seguido de ENTER.
+Del menú principal, mostrado al pulsar cualquier tecla desde la página de titulo, se puede acceder a cualquier opción del PAW con solo teclear una sola letra \(en MAYÚSCULAS\) seguida de ENTER.
 
-El menú está dividido en dos partes y la opción E permite cambios entre ellas. La parte inicial muestra todas las funciones necesarias para crear un juego. La segunda \(accesible con E\), contiene todo lo necesario para Salvar, Cargar, Verificar, Probar el juego, etc. y también el diseñador de caracteres y el compresor de textos \(se explicarán más adelante\).
+El menú está dividido en dos partes y la opción E permite cambios entre ellas. La parte inicial muestra todas las funciones necesarias para crear un juego. La segunda \(accesible con E\), contiene todo lo necesario para Salvar, Cargar, Verificar, Probar el juego, etc. y también el diseñador de caracteres y el compresor de textos \(se explicarán [más adelante](#check)\).
 
-Si te encuentras con la pregunta: ¿carga de sección de datos?, es porque la parte a usar no está presente en ese momento y requiere que se cargue de memoria externa \(ver secciones de datos\). Entonces se requerirá teclear sí o no, ENTER. En el momento actual no la necesitaremos = no, ENTER.
+Si te encuentras con la pregunta: «¿Carga de sección de datos?», es porque la parte a usar no está presente en ese momento y requiere que se cargue de la memoria externa \(ver [Secciones de datos](#Secciones-de-datos)\). Entonces se requerirá teclear «Sí» o «No» y pulsar ENTER. En el momento actual no la necesitaremos por lo que escribiremos «No», y luego pulsaremos ENTER.
 
 ### Línea de edición
 
-Similar a la de input en Basic; se pueden usar las teclas de cursor para moverse a derecha e izquierda y DELETE para borrar lo que está a la izquierda del cursor. EDIT debe ser tecleado dos veces, o apretado hasta que se auto repita para limpiar cualquier cosa que se haya tecleado.
+Similar a la de _input_ en Basic; se pueden usar las teclas de cursor para moverse a derecha e izquierda y DELETE para borrar lo que está a la izquierda del cursor. EDIT debe ser tecleado dos veces, o apretarse hasta que se autorepita para limpiar cualquier cosa que se haya tecleado.
 
-CURSOR Y ABAJO \(6\) debe ser tecleado dos veces o apretado hasta que se repita para abandonar el texto presente, la diferencia es que aquí se deja el texto que se estaba escribiendo en la base de datos y con EDIT se borra todo.
+CURSOR Y ABAJO \(6\) (check) debe ser tecleado dos veces o apretado hasta que se repita para abandonar el texto presente, la diferencia es que aquí se deja el texto que se estaba escribiendo en la base de datos y con EDIT se borra todo.
 
 ### Memoria libre
 
-Con F se muestra la memoria disponible en cada página. En 48K se referirá sólo a la página 0. Además, se muestran también la localidad y el mensaje más alto usados hasta el momento. La razón de esta información tan útil se explica más adelante. Apretando cualquier tecla se vuelve al menú.
+Con F se muestra la memoria disponible en cada página. En 48K se referirá sólo a la página 0. Además, se muestran también la localidad y el mensaje más alto, usados hasta el momento. La razón de esta información tan útil se explica más adelante. Apretando cualquier tecla se vuelve al menú.
 
-### Salvando, cargando y verificando la base de datos
+### Salvado, cargado y verificado de la base de datos
 
 Como es obvio que no se puede terminar un juego de una sola sentada y existe el peligro de pérdida de información por cualquier fallo del sistema, estas opciones permiten pasar a cinta o a disco un fichero con toda la información.
 
@@ -66,7 +66,7 @@ Con H se verificará la BD salvada comparándola con la que hay en memoria. Si s
 
 Con J se pide el nombre de la BD que se desee cargar de nuevo dentro de PAW. Cualquier base de datos que esté presente dentro de PAW se borrará para dejar paso a la nueva.
 
-Si se produce un error de carga, se corromperá toda el área donde se aloja la BD y la única opción que se debe hacer es continuar con J hasta que la BD se haya cargado satisfactoriamente. Cualquier otra opción producirá daño al programa propio de PAW y se necesitará una recarga completa.
+Si se produce un error de carga, se corromperá toda el área donde se aloja la BD y la única opción que se debe hacer es continuar con J hasta que la BD se haya cargado satisfactoriamente. Cualquier otra opción dañará el programa propio de PAW y se necesitará una recarga completa.
 
 **Regla:** salva tu base de datos regularmente y en cintas diferentes para tener así un resguardo en caso de producirse el clásico corte de luz u otro accidente cualquiera.
 
