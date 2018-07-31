@@ -956,11 +956,11 @@ Primero hay que determinar si el pájaro va a salir pitando. Esto pasará cuando
 _ PAJARO    COPYOF    4    11    ;Copia la localidad del objeto 4
                                  ;  (el billete) a la bandera 11.
             SAME      11   12    ;y mira si está en la misma
-				 ;  localidad que el pájaro.
+                                 ;  localidad que el pájaro.
             ZERO      5          ;¿Va a volar el pájaro?
             DESTROY   4          ;E1 pájaro coge el billete.
             SAME      12   38    ;¿Está el pájaro en la misma
-				 ;  localidad que el jugador?
+                                 ;  localidad que el jugador?
             MESSAGE   7          ;Díselo al jugador.
 ```
 
@@ -975,7 +975,7 @@ Fíjate que no hay acción DONE porque queremos que PAW haga todas las entradas,
 Ahora vamos a crear dos posibles movimientos para el pájaro. Si está en el pabellón de música y la bandera 5 ha llegado a 0, entonces hay que moverlo, reiniciar la bandera 5 a tres y decirle al jugador que el pájaro se ha ido si está en la misma localidad. Y lo mismo si está en la rama.
 
 ```
-_ PAJARO     EQ    12    8    ;¿Está el pájaro en la rama?
+_ PAJARO     EQ    12    8     ;¿Está el pájaro en la rama?
              ZERO  5           ;¿Es tiempo de volar?
              LET   12    5     ;Mover el pájaro al pabellón
              LET   5     3     ;Tres frases antes de moverse.
@@ -1046,7 +1046,7 @@ Ahora debemos asegurarnos de que el pájaro empieza en la localidad correcta y q
 * *             AT    0
                 ANYKEY
                 LET   12    8    ;E1 pájaro está en la rama 
-				 ;(localidad 8)
+                                 ;(localidad 8)
                 GOTO  2        
                 DESC
 ```
@@ -1064,7 +1064,7 @@ Por último seleccionaremos la tabla de respuestas e insertaremos la entrada:
 
 ```
 COGER BILLETE    SAME    12    38    ;¿Está el pájaro en la misma 
-				     ;localidad?
+                                     ;localidad?
                  ISAT    4     252   ;¿Con el billete en el pico?
                  CLEAR   5           ;Esto lo fuerza a volar
                  NOTDONE             ;«No puedo hacer eso».
@@ -1191,7 +1191,7 @@ _ PERRO    SAME    13    38
 _ PERRO    SAME    13    38    
            GT      14    2     ;255 es mayor que 2 así que
            MESSAGE 24          ;dile al jugador que el perro 
-			       ;está sentado.
+                               ;está sentado.
 ```
 
 Ya que estamos en la tabla de procesos 1, modifiquemos la entrada \* \* para que también contenga \[LET 13 2\] \(antes del GOTO\), para que el perro empiece en la parada de autobús.
@@ -1271,11 +1271,11 @@ La siguiete es una entrada relativamente simple para que se haga cargo de: «PON
 
 ```
 PONER CORREA    PREP A         	    ;Para asegurarnos de que el 
-				    ;jugador teclea esto
+                                    ;jugador teclea esto
                 NOUN2 PERRO
                 CARRIED    5        ;El jugador lleva la correa
                 SAME       13  38   ;Que esté en la misma 
-				    ;localidad que el perro
+                                    ;localidad que el perro
                 LET        14  1    ;Ahora el perro lleva la correa
                 DESTROY    5        ;por lo tanto, el jugador no la puede tener
                 MESSAGE    21       ;Se le dice.
@@ -1287,7 +1287,7 @@ En las entradas siguientes, introduciremos un nuevo concepto: Se trata de la mod
 Inserta las entradas:
 
 ```
-ATAR PERRO     LET    34    55    ;La bandera 34 es el nombre de la SL
+ATAR PERRO     LET    34    55   ;La bandera 34 es el nombre de la SL
 
 ATAR CORREA    PREP A 
                NOUN2 BANCO        
@@ -1299,7 +1299,7 @@ ATAR CORREA    PREP A
                DONE
 
 ATAR _         NOTDONE          ;Para asegurarse de que
-				;no pueda atar otra cosa.
+                                ;no pueda atar otra cosa.
 
 DESATAR PERRO  LET     34  55   ;La bandera 34 es el nombre de la SL
 
@@ -1312,7 +1312,7 @@ DESATAR CORREA AT      4        ;Donde está el banco
                DONE
 
 DESATAR _      NOTDONE          ;Es para asegurarse de que no	
-				;pueda desatar otra cosa.
+                                ;pueda desatar otra cosa.
 ```
 
 **CREATE** Es una acción a la que debe seguir un número de objeto. Ello causa que el objeto aparezca en la posición donde está el jugador.
@@ -1356,9 +1356,13 @@ Para hacerle volver: «DECIR AL PERRO "VEN AQUI"».
 Antes de que continuemos con los gráficos, aquí hay unos cuantos puntos que convendría arreglar en el juego de demostración que te servirán como práctica en el uso del sistema.
 
   1) «EXAMINA» debe responder a todos los objetos aunque sea con una respuesta general como «No veo nada especial en el \_ ».
+
   2) El pájaro debería de verdad volar, escapándose de ti si intentas coger el emparedado mientras está presente. Por ejemplo, se supone que estaría picoteando el emparedado y cualquier pájaro se las piraría.
+
   3) «DESATA \_» y «ATA \_» deben tener un mensaje más o menos parecido a «¿Atar qué?» y «¿A qué?», porque la forma en que lo pusimos con NOTDONE era una solución bastante fácil.
+
   4) Si el jugador intenta teclear «PONER un objeto DENTRO DE LA BOLSA» y la bolsa no está presente, tal como lo tenemos de momento lo único que pasará es que dejará caer el objeto, ¿por qué? Arréglalo.
+
   5) No se ha nada hecho con la antorcha todavía. Las siguientes entradas te permiten encenderla y apagarla \(pero debes tener la palabra «encender» y «apagar» en el vocabulario\):
 
 ```
@@ -1380,5 +1384,7 @@ BAJAR _    AT     5    ;¿Está el jugador en el pabellón?
            DESC
 ```
 No debes olvidarte de poner una entrada para «SUBIR» que limpie \(«clear» en inglés\) la bandera otra vez a 0.  
+
   6) ¿Qué pasa si el jugador intenta subir al árbol? y ¿cómo sería otra manera de poner esto? Como clave te diremos que solamente hay una cosa a la que se pueda subir en esa localidad.
+
 
