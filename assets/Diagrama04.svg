@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" height="700" width="400" version="1.1" viewBox="0 0 400 700">
+<defs><marker id="e" refY="0" refX="0" style="overflow:visible" orient="auto"><path style="stroke:#000;stroke-width:1pt;fill-rule:evenodd" transform="matrix(.4 0 0 .4 4 0)" d="m0 0 5-5-17.5 5 17.5 5z"/></marker><marker id="Arrow1Mstart" refY="0" refX="0" style="overflow:visible" orient="auto"><path style="stroke:#000;stroke-width:1pt;fill-rule:evenodd" transform="matrix(.4 0 0 .4 4 0)" d="m0 0 5-5-17.5 5 17.5 5z"/></marker><marker id="f" refY="0" refX="0" style="overflow:visible" orient="auto"><path style="stroke:#000;stroke-width:1pt;fill-rule:evenodd" transform="matrix(-.4 0 0 -.4 -4 0)" d="m0 0 5-5-17.5 5 17.5 5z"/></marker><marker id="g" refY="0" refX="0" style="overflow:visible" orient="auto"><path style="stroke:#000;stroke-width:1pt;fill-rule:evenodd" transform="matrix(-.4 0 0 -.4 -4 0)" d="m0 0 5-5-17.5 5 17.5 5z"/></marker><marker id="h" refY="0" refX="0" style="overflow:visible" orient="auto"><path style="stroke:#000;stroke-width:1pt;fill-rule:evenodd" transform="matrix(-.4 0 0 -.4 -4 0)" d="m0 0 5-5-17.5 5 17.5 5z"/></marker><marker id="Arrow1Mend" refY="0" refX="0" style="overflow:visible" orient="auto"><path style="stroke:#000;stroke-width:1pt;fill-rule:evenodd" transform="matrix(-.4 0 0 -.4 -4 0)" d="m0 0 5-5-17.5 5 17.5 5z"/></marker>
+</defs>
+<rect style="color-rendering:auto;color:#000000;isolation:auto;mix-blend-mode:normal;paint-order:normal;shape-rendering:auto;solid-color:#000000;image-rendering:auto;stroke-width:1.333;fill:#fff" ry="0" height="699.8" width="399.9" y=".1926" x="-0.032"/>
+<g style="stroke:#000;stroke-width:1.096;stroke-miterlimit:8;stroke-linecap:round;fill:none">
+<path d="m85.95 71.37v185.9"/><path d="m143.4 29.39c-7.185 0-13.02 6.718-13.02 15 0 8.278 5.839 15 13.02 15h54.93c7.185 0 13.02-6.718 13.02-15 0-8.278-5.839-15-13.02-15z" style="stroke-linejoin:round;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:.9998;fill:none"/>
+<path d="m126.6 137.4h88.06v-48.03h-88.1z"/><path d="m129.3 209.3h82.81v-47.99h-82.8z"/><path d="m131.3 353.3h78.77v-47.99h-78.8z"/><path d="m131.1 425.3h79.07v-47.99h-79.1z"/><path d="m170.6 233.3-40.48 23.99 40.48 23.99 40.5-23.99z"/>
+<path d="m170.6 59.38v29.99"/><path d="m170.6 137.4v23.99"/><path d="m170.6 209.3v23.99"/><path d="m170.6 281.3 0.0666 23.99"/><path d="m168.6 71.37h-82.65" style="marker-start:url(#Arrow1Mstart)"/><path d="m85.95 257.3h43.99"/><path d="m172.2 149.4h183" style="marker-start:url(#e)"/><path d="m355.2 149.4v521.4"/><path d="m170.6 353.3v23.99"/><path d="m170.6 437.4-40.48 23.99 40.48 23.99 40.5-23.99z"/><path d="m85.95 461.4 44.04 0.0667"/><path d="m211 461.4 48.85 0.0667"/><path d="m219 533.8h82.05v-47.99h-82z"/><path d="m259.8 461.8v22" style="marker-end:url(#f)"/><path d="m37.83 533.7h96.06v-47.99h-96.07z"/><path d="m85.95 461.4v22.26" style="marker-end:url(#Arrow1Mend)"/><path d="m259.9 547.7-40.5 23.99 40.5 23.99 40.48-23.99z"/><path d="m223.2 656.8h73.32v-48h-73.32z"/><path d="m259.9 533.8v13.6"/><path d="m259.9 595.9v12.84"/><path d="m300.3 571.6 54.05 0.0666" style="marker-end:url(#g)"/>
+<path d="m259.6 656.8v12.6" style="marker-end:url(#h)"/><path d="m86.08 670.8h269.1"/><path d="m86.08 533.8v137"/><path d="m170.6 425.6v11.5"/>
+<path d="m211 385.4 50.85 0.0666" style="stroke-dasharray:0.99975003, 2.99925008"/><path d="m290.2 421-0.0666 52.85" style="stroke:#000;stroke-dasharray:0.99975003, 2.99925008"/><path d="m219 173.5 38.86 0.0667" style="stroke:#000;stroke-dasharray:0.99975003, 3.99900011"/>
+</g>
+<g style="font-size:10.72px;stroke-width:1.333;font-family:Courier;fill:#000000">
+<text y="254.66229" x="112.05997">No</text>
+<text y="564.18488" x="304.41187">No</text>
+<text y="605.10797" x="274.81927">Sí</text>
+<text y="452.21289" x="212.43488">No</text>
+<text y="451.94629" x="112.8731">Sí</text>
+<text y="291.9863" x="182.84227">Sí</text>
+<text y="46.902534" x="150.83803">Inicio</text>
+<text y="114.88549" x="147.49918">entrada</text>
+<text y="102.8885" x="147.49918">Obtener</text>
+<text y="126.88249" x="135.50218">del jugador</text>
+<text y="174.8705" x="141.17058">Busca una</text>
+<text y="187.52765" x="154.15788">frase</text>
+<text y="201.52415" x="151.14917">válida</text>
+<text y="249.51215" x="157.31268">¿La</text>
+<text y="259.50964" x="148.81956">encuen-</text>
+<text y="174.8705" x="267.1391">Aquí se usa</text>
+<text y="186.86749" x="267.1391">el parser</text>
+<text y="386.8175" x="267.1391">una entrada</text>
+<text y="398.81448" x="267.1391">igual a</text>
+<text y="412.811" x="267.1391">la S. L.</text>
+<text y="318.25961" x="145.16959">Crea una</text>
+<text y="332.2561" x="141.17058">sentencia</text>
+<text y="346.25259" x="151.16809">lógica</text>
+<text y="392.24112" x="135.17209">Busca en la</text>
+<text y="404.2381" x="144.23854">tabla de</text>
+<text y="418.23462" x="138.24004">respuestas</text>
+<text y="498.2146" x="224.21857">Busca en la</text>
+<text y="512.70465" x="233.64117">tabla de</text>
+<text y="526.20758" x="226.57422">conexiones</text>
+<text y="271.50665" x="158.81708">tra?</text>
+<text y="453.46115" x="157.31268">¿La</text>
+<text y="463.45865" x="148.81956">encuen-</text>
+<text y="475.45566" x="158.81708">tra?</text>
+<text y="563.43365" x="246.22173">¿La</text>
+<text y="573.43115" x="237.72861">encuen-</text>
+<text y="585.42816" x="247.72612">tra?</text>
+<text y="498.2146" x="50.262062">Ejecuta los</text>
+<text y="512.70465" x="40.620686">condaccs hasta</text>
+<text y="526.20758" x="56.616718">un «DONE»</text>
+<text y="621.82745" x="230.92937">Pasa a la</text>
+<text y="636.3175" x="243.63867">nueva</text>
+<text y="649.82043" x="230.21707">localidad</text>
+</g>
+</svg>
