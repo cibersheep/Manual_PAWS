@@ -20,7 +20,7 @@ El ordenador juega la parte del pasajero a quien se debe dirigir para encontrar 
 
 #### Diseño del juego
 
-Ahora que la idea está más clara, es importante hacer un boceto del área de juego; en nuestro ejemplo sería algo parecido al [diagrama 2](#diagrama-2).
+Ahora que la idea está más clara, es importante hacer un boceto del área de juego; en nuestro ejemplo sería algo parecido al [diagrama 2](#diagrama02).
 
 Es de notar que la zona de juego debe estar cerrada de una manera lógica, o el jugador no entenderá por qué no puede ir en una dirección si no hay nada que le impida el paso.
 
@@ -46,15 +46,11 @@ La localidad 0 debe ser reservada siempre como pantalla de títulos y dejaremos 
 
 Ahora podemos empezar las descripciones de las localidades. Deben ser lo más imaginativas posible, pero en estilo corto e interesante. Hay que procurar mantener una misma forma verbal todo el tiempo, generalmente en primera \(yo\) o segunda \(tú\) persona, o pronto el jugador tendrá una seria crisis de identidad. Sea cual sea la forma elegida, debe concordar con los Mensajes del sistema \(ver [más adelante](#check)\).
 
-###### Diagrama 2
+###### Diagrama 2 ![](/assets/diagrama02-entero.png) {#diagrama02}
 
-![](/assets/diagrama02-entero.png)
+Por una mayor claridad y poder ver mejor los posibles movimientos, haremos un mapa del [lugar](#diagrama03).
 
-Por una mayor claridad y poder ver mejor los posibles movimientos, haremos un mapa del [lugar](#diagrama-3).
-
-###### Diagrama 3
-
-![](/assets/Diagrama03.png)
+###### Diagrama 3 ![](/assets/Diagrama03.png) {#diagrama03}
 
 ###### Pantalla de muestra del menú
 
@@ -520,7 +516,7 @@ Si ahora seleccionamos R del menú principal aparecerá el submenú de esa tabla
 
 I \_ INVEN
 
-Las dos palabras \(porque \_ es _una palabra_\), indican el verbo y el sustantivo, respectivamente. Ahora «I» es un nombre _convertible_ en verbo \(como vimos en la [sección de vocabulario](#Vocabulario)\) esto significa que si se teclea por sí solo, es decir, si «I» es la única palabra que ha tecleado el jugador en la frase, será tomada como un verbo en la SL. La línea \( \_ \) indica que el nombre no es importante en esta entrada \(vendría a ser como la «no palabra» que vimos en la [tabla de objetos y palabras](#Palabras-para-los-objetos)\).
+Las dos palabras \(porque \_ es _una palabra_\), indican el verbo y el sustantivo, respectivamente. Ahora «I» es un nombre _convertible_ en verbo \(como vimos en la [sección de vocabulario](#vocabulario)\) esto significa que si se teclea por sí solo, es decir, si «I» es la única palabra que ha tecleado el jugador en la frase, será tomada como un verbo en la SL. La línea \( \_ \) indica que el nombre no es importante en esta entrada \(vendría a ser como la «no palabra» que vimos en la [tabla de objetos y palabras](#Palabras-para-los-objetos)\).
 
 Lo que esto significa es que si el jugador solo teclea «I», PAW lo equiparará con la primera entrada de la tabla de respuestas que tenga la «I», y ejecutará la orden que se describa al lado de ella.
 
@@ -532,9 +528,7 @@ Cuando tecleaste «I» \(o «inventario» si lo has puesto como sinónimo\) dura
 
 INVEN, después de hacer una lista de todos los objetos que lleva el personaje, le dice automáticamente a PAW que ya ha _acabado,_ y cuando PAW lo descubre, pide al _parser_ una nueva sentencia lógica, el _parser_ se la ofrece, decodificando las siguientes frases desde el _input_ del jugador. PAW entonces coge esta nueva SL y la compara con todas las entradas que hay en la tabla de respuestas, y así sucesivamente.
 
-###### Diagrama 4
-
-![](./assets/Diagrama04.svg)
+###### Diagrama 4 ![](./assets/Diagrama04.svg) {#diagrama04}
 
 Este bucle \(_loop_ en inglés\) se muestra en el diagrama 4 en forma de diagrama de flujo que se puede seguir desde el cuadrado marcado como «Inicio». El bucle es bastante más complejo que lo que el diagrama te pueda parecer y de hecho se da una versión más completa en la guía técnica, pero de momento nos servirá.
 
@@ -946,7 +940,7 @@ La bandera 11, será una bandera de «trabajo», porque contiene un valor que se
 
 La bandera 12, guardará el número de la localidad actual del pájaro.
 
-La bandera 5, es una bandera especial, porque si tiene un valor diferente de 0, disminuirá en 1 cada vez que PAW ejecute una acción, es decir, cada vez que PAW revise la tabla de proceso 2. Es lo que se llama una bandera autodecreciente. En este caso usaremos la bandera 5 para contar el número de turnos que han pasado en el juego. Un turno del juego es toda una vuelta del circuito grande en el [diagrama 4](#diagrama-4), y de momento, esto pasa cada vez que el jugador teclea una frase. El pajarito cambiará de localidad cada tres frases, lo que creará una especie de apariencia de acción independiente de lo que teclea el jugador.
+La bandera 5, es una bandera especial, porque si tiene un valor diferente de 0, disminuirá en 1 cada vez que PAW ejecute una acción, es decir, cada vez que PAW revise la tabla de proceso 2. Es lo que se llama una bandera autodecreciente. En este caso usaremos la bandera 5 para contar el número de turnos que han pasado en el juego. Un turno del juego es toda una vuelta del circuito grande en el [diagrama 4](#diagrama04), y de momento, esto pasa cada vez que el jugador teclea una frase. El pajarito cambiará de localidad cada tres frases, lo que creará una especie de apariencia de acción independiente de lo que teclea el jugador.
 
 Ahora, vamos a insertar las siguientes entradas \(sin los comentarios, como hicimos antes\). En cada entrada tenemos una explicación de su propósito y también explicaremos cualquier nuevo _condacto_ que se use:
 
