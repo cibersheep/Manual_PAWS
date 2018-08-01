@@ -22,7 +22,7 @@ El ordenador juega la parte del pasajero a quien se debe dirigir para encontrar 
 
 Ahora que la idea está más clara, es importante hacer un boceto del área de juego; en nuestro ejemplo sería algo parecido al [diagrama 2](#diagrama02).
 
-###### Diagrama 2 ![](/assets/diagrama02.svg) {#diagrama02}
+###### Diagrama 2 ![](/assets/diagrama02.png) {#diagrama02}
 
 Nota que la zona de juego debe estar cerrada de una manera lógica, o el jugador no entenderá por qué no puede ir en una dirección si no hay nada que le impida el paso.
 
