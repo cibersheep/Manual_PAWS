@@ -22,7 +22,9 @@ El ordenador juega la parte del pasajero a quien se debe dirigir para encontrar 
 
 Ahora que la idea está más clara, es importante hacer un boceto del área de juego; en nuestro ejemplo sería algo parecido al [diagrama 2](#diagrama02).
 
-Es de notar que la zona de juego debe estar cerrada de una manera lógica, o el jugador no entenderá por qué no puede ir en una dirección si no hay nada que le impida el paso.
+###### Diagrama 2 ![](/assets/diagrama02.svg) {#diagrama02}
+
+Nota que la zona de juego debe estar cerrada de una manera lógica, o el jugador no entenderá por qué no puede ir en una dirección si no hay nada que le impida el paso.
 
 Para el ordenador, una aventura consiste en un determinado número de apartados o localidades que el jugador debe visitar; es ahora el momento de decidir qué zonas del boceto se tomarán como localidades y numerarlas individualmente.
 
@@ -46,27 +48,23 @@ La localidad 0 debe ser reservada siempre como pantalla de títulos y dejaremos 
 
 Ahora podemos empezar las descripciones de las localidades. Deben ser lo más imaginativas posible, pero en estilo corto e interesante. Hay que procurar mantener una misma forma verbal todo el tiempo, generalmente en primera \(yo\) o segunda \(tú\) persona, o pronto el jugador tendrá una seria crisis de identidad. Sea cual sea la forma elegida, debe concordar con los Mensajes del sistema \(ver [más adelante](#check)\).
 
-###### Diagrama 2 ![](/assets/diagrama02-entero.png) {#diagrama02}
+Por claridad y para poder ver mejor los posibles movimientos, haremos un mapa del [lugar](#diagrama03).
 
-Por una mayor claridad y poder ver mejor los posibles movimientos, haremos un mapa del [lugar](#diagrama03).
-
-###### Diagrama 3 ![](/assets/Diagrama03.png) {#diagrama03}
-
-###### Pantalla de muestra del menú
-
-![](/assets/pantalla-muestra-menu.png)
+###### Diagrama 3 ![](/assets/Diagrama03.svg) {#diagrama03}
 
 ### Empezando a teclear
 
 #### Localidades
 
-Selecciona la opción L en el menú principal. Un pequeño submenú te mostrará las opciones para Insertar o Corregir \(_amend_\) una localidad. Como todos los menús se parecen, examinaremos estas opciones para familiarizarnos con ellas. \(Ver el esquema de menú del dibujo anterior\).
+Selecciona la opción L en el menú principal. Un pequeño submenú te mostrará las opciones para Insertar o Corregir \(_amend_\) una localidad. Como todos los menús se parecen, examinaremos estas opciones para familiarizarnos con ellas. \(Ver el esquema de menú\).
+
+###### Pantalla de muestra del menú ![](/assets/pantalla-menu.png)
 
 Cualquier cosa que se teclee aparecerá en la parte inferior de la pantalla, como siempre. Las zonas en _inverse_ nos indican lo que hay que teclear para obtener las funciones que figuran a la derecha. Por ejemplo: La opción P nos dará una descripción de la localidad elegida (en este caso será la 0, que siempre existe para simplificar el trabajo interno del PAW) y podremos ver la inclusión de colores, etc., dentro del texto, para destacar ciertas palabras. Ese texto debe ser reemplazado por nuestra introducción, así que debe ser _corregido._
 
 Con cualquier tecla volvemos al submenú y tecleando \[A 0\] \(no olvidar el espacio\) veremos el texto de la localidad elegida, pero con el cursor al final para una posible edición. Para limpiar TODO el texto teclea EDIT \(CAPS SHIFT + 1\) dos veces y obtendrás una localidad limpia para trabajar.
 
-*Nota:* tener en cuenta que con teclear CAPS SHIFT + 6 \(flecha hacia abajo\), dos veces, lo que se obtiene es un _stop_ en _input,_ con mensaje de error en la parte inferior de la pantalla. Basta apretar cualquier tecla para volver al último menú usado, pero dejando el texto original intacto. Esta es la diferencia entre EDIT y el 6.
+*Nota:* tener en cuenta que con teclear \[CAPS SHIFT + 6\] \(flecha hacia abajo\), dos veces, lo que se obtiene es un _stop_ en _input,_ con mensaje de error en la parte inferior de la pantalla. Basta apretar cualquier tecla para volver al último menú usado, pero dejando el texto original intacto. Esta es la diferencia entre EDIT y el 6.
 
 #### Colores
 
@@ -86,11 +84,11 @@ Cuando hayas terminado, teclea ENTER para finalizar la edición y luego cualquie
 
 Con la opción P se puede ver el texto todavía sin formatear, pues esto solo se ejecuta mientras se juega el juego.
 
-Con L se imprimirá el texto. Si parece que el ordenador se cuelga teclea BREAK \(CAPS SHIFT + ESPACIO en 48K\) para volver al menú, y entonces busca en la guía técnica más información sobre la impresora.
+Con L se imprimirá el texto. Si parece que el ordenador se cuelga teclea BREAK \(\[CAPS SHIFT + ESPACIO\] en 48K\) para volver al menú, y entonces busca en la guía técnica más información sobre la impresora.
 
-Con I se crea una nueva localidad. No hace falta teclear un número detrás porque PAW automáticamente le asigna el próximo que esté libre. De momento dejaremos la localidad 1 sin usar, así que solo teclea I + ENTER y ahora tendrás una localidad virgen para usar. Con ENTER y cualquier tecla volverás al submenú.
+Con I se crea una nueva localidad. No hace falta teclear un número detrás porque PAW automáticamente le asigna el próximo que esté libre. De momento dejaremos la localidad 1 sin usar, así que solo teclea \[I + ENTER\] y ahora tendrás una localidad virgen para usar. Con ENTER y cualquier tecla volverás al submenú.
 
-Ahora teclea I + ENTER otra vez para insertar la localidad 2 y luego poder teclear el texto que la describe.
+Ahora teclea \[I + ENTER\] otra vez para insertar la localidad 2 y luego poder teclear el texto que la describe.
 
 Debido al formateo automático hay que teclear siempre los espacios aunque sea al final de la línea porque si no, el programa tomará dos palabras como si fuera una sola larga. Los espacios sobrantes serán suprimidos luego, durante el juego.
 
@@ -100,7 +98,7 @@ TEXTO LOCALIDAD 2: \[Estoy en la parada del autobús en una calle de dirección 
 
 Vuelve al submenú con ENTER \(desde ahora omitiremos el uso de la palabra ENTER, suponiendo que con tu inteligencia habitual has captado la onda\). \[porque suponemos que lo recordarás y nos ahorra tener que mecanografiarlo con nuestros deditos.\]
 
-Ahora es el momento de demostrar cómo PAW previene y avisa cuando una orden no es válida: teclea I + ENTER \(_juraíto_ que es la última vez que te lo recuerdo\) y como resultado tendrás una parpadeante interrogación después del 3. Esto se debe a que PAW se ha dado cuenta de que no se necesita ningún número después de la opción insertar.
+Ahora es el momento de demostrar cómo PAW previene y avisa cuando una orden no es válida: teclea \[I + ENTER\] \(_juraíto_ que es la última vez que te lo recuerdo\) y como resultado tendrás una parpadeante interrogación después del 3. Esto se debe a que PAW se ha dado cuenta de que no se necesita ningún número después de la opción insertar.
 
 Por otra parte PAW posicionará siempre el cursor tan cerca al problema como pueda, en este caso con un solo DELETE quitaremos el número \(no te preocupes por el espacio que queda pues PAW ignora cualquier espacio superfluo\).
 

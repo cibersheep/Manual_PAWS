@@ -99,7 +99,7 @@ Vamos a explicar cómo guarda PAW la cadena de dibujo. Mientras tú pintas tu ob
 
 ###### Diagrama 7
 
-![1530653379213](./assets/diagrama07.png)
+![1530653379213](./assets/diagrama07.svg)
 
 Volviendo con lo nuestro, usa \[CAPS SHIFT + 6\] hasta que lleguemos a la orden «plot», que era, como recordarás, 191,72, con la cual se inició la base del pabellón de música. Usa «delete» para borrarlo de la cadena y entonces haz un «plot» 207,72 que PAW insertará en la cadena de dibujo donde está el puntero. Si usamos «next», o sea \[CAPS SHIFT + 6\], la línea de la base aparecerá dibujada. En vez de usar «next» cada vez para llegar al final de la cadena hay otra forma mucho más fácil: cuando estés al principio de una cadena muy larga si tecleas \[ENTER\] terminará la edición y te llevará al submenú. Entonces teclea \[A 4 ENTER\] para corregir el dibujo otra vez y ya tendrás el puntero al final de la cadena. **Es importante que te des cuenta de que la base entera se mueve como una sola unidad, porque antes usamos un movimiento relativo, cuando la pintamos originalmente.**
 

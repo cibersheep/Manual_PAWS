@@ -16,9 +16,9 @@ La muestra en este manual no necesita secciones extra de datos así que su uso s
 
 ### Paginación de memoria
 
-El 128K usa un sistema llamado paginación para obtener su memoria extra; el [diagrama 1](#diagrama01) ayudará a visualizar su composición. En él se ve que la parte superior se puede mover como una diapositiva en un proyector para que cada una de las páginas de 16K se pueda acomodar en un ordenador que solo puede ver 64K cada vez \(ver [diagrama 1](#diagrama01)\).
+El 128K usa un sistema llamado paginación para obtener su memoria adicional; el [diagrama 1](#diagrama01) ayudará a visualizar su composición. En él se ve que la parte superior se puede mover como una diapositiva en un proyector para que cada una de las páginas de 16K se pueda acomodar en un ordenador que solo puede ver 64K cada vez \(ver [diagrama 1](#diagrama01)\).
 
-###### DIAGRAMA 1![](/assets/diagrama01.png) {#diagrama01}
+###### DIAGRAMA 1![](/assets/diagrama01.svg) {#diagrama01}
 
 **Nota:** las páginas 2 y 5 son el área de memoria donde se localiza el PAW y por ello no están disponibles. La zona de memoria marcada como _Secciones de datos_ (Check) será usada por PAW si es necesario \(ver [sección anterior](#paginación-de-memoria)\).
 
