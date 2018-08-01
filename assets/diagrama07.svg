@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" height="400" width="200" version="1.1" viewBox="0 0 200 400">
+<g style="fill:#fff;fill-rule:evenodd">
+<path d="m38.99 61.23h122v-24.55h-122z"/>
+<path d="m38.99 138h122v-76.77h-122z"/>
+<path d="m38.99 262h122v-124h-122z"/>
+<path d="m38.99 286.6h122v-24.6h-122z"/>
+<path d="m38.99 363.3h122v-76.7h-122z"/>
+</g>
+<g style="stroke:#000;stroke-width:1.728;stroke-miterlimit:10;stroke-linecap:round;fill:none">
+<path d="m38.99 262h122v-124h-122z"/>
+<path d="m38.99 138h122v-76.77h-122z"/>
+<path d="m38.99 286.6h122v-24.6h-122z"/>
+<path d="m38.99 363.3h122v-76.7h-122z"/>
+<path d="m38.99 61.23h122v-24.55h-122z"/>
+</g>
+<g style="font-size:18.53px;font-family:Courier;fill:#000000">
+<text y="54.5126" x="73.307472">Final</text>
+<text y="126.5126" x="49.307472">Siguiente</text>
+<text y="186.5126" x="75.307472">Zona</text>
+<text y="208.5126" x="71.307472">libre</text>
+<text y="278.98322" x="59.307472">Puntero</text>
+<text y="352.98322" x="65.307472">Inicio</text>
+</g>
+</svg>
